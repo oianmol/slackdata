@@ -35,7 +35,7 @@ publishing {
 
 allprojects {
   group = "dev.baseio.slackclone"
-  version = System.getenv("GITHUB_REF")?.split('/')?.last() ?: "v1.0.0-test"
+  version = "v1.0.0-test"
 
   afterEvaluate {
         // Remove log pollution until Android support in KMP improves.
