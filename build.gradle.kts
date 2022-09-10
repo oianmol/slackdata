@@ -5,22 +5,25 @@ plugins {
   id("com.squareup.sqldelight") version "1.5.3"
 }
 
+object GithubRepo {
+    val name: String? = System.getenv("GITHUB_REPOSITORY")
+    val path: String = "https://www.github.com/$name"
+    val packages: String = "https://maven.pkg.github.com/$name"
+    val ref: String? = System.getenv("GITHUB_REF")
+}
+
+
 group = "dev.baseio.slackclone"
 version = "1.0.0"
 
 publishing {
   repositories {
     mavenLocal()
-    System.getenv("GITHUB_REPOSITORY").let {
-      maven {
+    repositories.maven {
         name = "github"
-        url = uri("https://maven.pkg.github.com/$it")
-        credentials {
-          username = githubUsername
-          password = githubPassword
-        }
-      }
-    }
+        url = project.uri(GithubRepo.packages)
+        credentials(PasswordCredentials::class)
+    }.takeIf { GithubRepo.name != null }
   }
 }
 
