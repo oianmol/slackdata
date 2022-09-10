@@ -15,10 +15,6 @@ publishing {
       maven {
         name = "github"
         url = uri("https://maven.pkg.github.com/$it")
-        credentials {
-          username = System.getenv("MAVEN_USERNAME")
-          password = System.getenv("MAVEN_PASSWORD")
-        }
         credentials(PasswordCredentials::class)
       }
     }
