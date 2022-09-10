@@ -16,8 +16,8 @@ publishing {
         name = "github"
         url = uri("https://maven.pkg.github.com/$it")
         credentials {
-          username = System.getenv("actor")
-          password = System.getenv("token")
+          username = githubUsername
+          password = githubPassword
         }
       }
     }
@@ -148,6 +148,10 @@ sqldelight {
     linkSqlite = true
   }
 }
+
+val githubUsername: String by project
+val githubPassword: String by project
+
 
 android {
   lint{

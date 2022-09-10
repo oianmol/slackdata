@@ -16,3 +16,5 @@ jobs:
 
       - name: Publish
         run: gradle check publish --no-configure-on-demand --no-daemon
+          ORG_GRADLE_PROJECT_githubUsername: ${{ secrets.actor }}
+          ORG_GRADLE_PROJECT_githubPassword: ${{ secrets.token }}
