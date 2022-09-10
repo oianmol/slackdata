@@ -88,7 +88,6 @@ kotlin {
     compilations.all {
             kotlinOptions {
                 jvmTarget = "${Jvm.target}"
-                useIR = true
             }
         }
   }
