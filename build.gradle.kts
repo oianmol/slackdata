@@ -12,6 +12,10 @@ object GithubRepo {
     val ref: String? = System.getenv("GITHUB_REF")
 }
 
+object Jvm {
+    val target = JavaVersion.VERSION_1_8
+}
+
 
 group = "dev.baseio.slackclone"
 version = "1.0.0"
@@ -72,6 +76,12 @@ kotlin {
   }
   android {
     publishLibraryVariants("release")
+    compilations.all {
+            kotlinOptions {
+                jvmTarget = "${Jvm.target}"
+                useIR = true
+            }
+        }
   }
   sourceSets {
     val commonMain by getting {
@@ -151,9 +161,6 @@ sqldelight {
     linkSqlite = true
   }
 }
-
-val githubUsername: String by project
-val githubPassword: String by project
 
 
 android {
