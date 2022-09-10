@@ -92,19 +92,12 @@ kotlin {
         implementation(Deps.Koin.core)
       }
     }
-    val commonTest by getting {
-      dependencies {
-        implementation(kotlin("test"))
-      }
-    }
     val jvmMain by getting {
       dependencies {
         implementation(Deps.Kotlinx.JVM.coroutinesSwing)
         implementation(Deps.SqlDelight.jvmDriver)
       }
     }
-    val jvmTest by getting
-
     val sqlDriverNativeMain by creating {
       dependsOn(commonMain)
       dependencies {
@@ -130,17 +123,10 @@ kotlin {
         implementation(Deps.Kotlinx.IOS.coroutinesX64)
       }
     }
-    val iosX64Test by getting
-    val iosArm64Test by getting
     val androidMain by getting {
       dependencies {
         implementation(Deps.SqlDelight.androidDriver)
         implementation(Deps.AndroidX.lifecycleViewModelKtx)
-      }
-    }
-    val androidTest by getting {
-      dependencies {
-        implementation("junit:junit:4.13.2")
       }
     }
   }
