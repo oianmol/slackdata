@@ -11,10 +11,16 @@ version = "1.0.0"
 publishing {
   repositories {
     mavenLocal()
-    maven {
-      name = "github"
-      url = uri("https://maven.pkg.github.com/anmol92verma")
-      credentials(PasswordCredentials::class)
+    System.getenv("GITHUB_REPOSITORY").let {
+      maven {
+        name = "github"
+        url = uri("https://maven.pkg.github.com/$it")
+        credentials {
+          username = System.getenv("MAVEN_USERNAME")
+          password = System.getenv("MAVEN_PASSWORD")
+        }
+        credentials(PasswordCredentials::class)
+      }
     }
   }
 }
