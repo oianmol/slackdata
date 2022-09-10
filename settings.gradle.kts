@@ -13,5 +13,6 @@ pluginManagement {
         }
     }
 }
+
 rootProject.name = "slackdata"
 

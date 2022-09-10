@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+
 plugins {
   kotlin("multiplatform") version "1.7.10"
   id("com.android.library")
@@ -150,9 +152,6 @@ sqldelight {
 
 
 android {
-  testFixtures {
-    enable = false
-  }
   lint{
     this.abortOnError = false
   }
@@ -170,6 +169,21 @@ android {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
   }
+}
+
+subprojects {
+    afterEvaluate {
+        project.extensions.findByType<KotlinMultiplatformExtension>()?.let { ext ->
+            ext.sourceSets.removeAll { sourceSet ->
+                setOf(
+                    "androidAndroidTestRelease",
+                    "androidTestFixtures",
+                    "androidTestFixturesDebug",
+                    "androidTestFixturesRelease",
+                ).contains(sourceSet.name)
+            }
+        }
+    }
 }
 
 object Versions {
