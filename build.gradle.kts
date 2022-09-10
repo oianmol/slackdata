@@ -160,10 +160,8 @@ sqldelight {
 android {
   lint{
     this.abortOnError = false
-  }
-  lintOptions {
-    this.isAbortOnError = false
-    baseline(file("lint-baseline.xml"))
+    this.checkReleaseBuilds = false
+    baseline = file("lint-baseline.xml")
   }
   compileSdk = (31)
   sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
