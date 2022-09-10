@@ -64,7 +64,7 @@ kotlin {
       }
     }
   }
-  android{
+  android {
     publishLibraryVariants("release")
   }
   sourceSets {
@@ -147,6 +147,9 @@ sqldelight {
 }
 
 android {
+  lint{
+    this.abortOnError = false
+  }
   compileSdk = (31)
   sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
   defaultConfig {
