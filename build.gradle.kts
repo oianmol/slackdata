@@ -36,6 +36,13 @@ publishing {
 allprojects {
   group = "dev.baseio.slackclone"
   version = System.getenv("GITHUB_REF")?.split('/')?.last() ?: "development"
+
+  afterEvaluate {
+        // Remove log pollution until Android support in KMP improves.
+        project.extensions.findByType<KotlinMultiplatformExtension>()?.let { kmpExt ->
+            kmpExt.sourceSets.removeAll { it.name == "androidAndroidTestRelease" }
+        }
+    }
 }
 
 repositories {
@@ -171,20 +178,6 @@ android {
   }
 }
 
-subprojects {
-    afterEvaluate {
-        project.extensions.findByType<KotlinMultiplatformExtension>()?.let { ext ->
-            ext.sourceSets.removeAll { sourceSet ->
-                setOf(
-                    "androidAndroidTestRelease",
-                    "androidTestFixtures",
-                    "androidTestFixturesDebug",
-                    "androidTestFixturesRelease",
-                ).contains(sourceSet.name)
-            }
-        }
-    }
-}
 
 object Versions {
   const val koin = "3.1.4"
