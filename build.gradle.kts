@@ -150,6 +150,9 @@ sqldelight {
 
 
 android {
+  testFixtures {
+    enable = false
+  }
   lint{
     this.abortOnError = false
   }
