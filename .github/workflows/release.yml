@@ -1,6 +1,7 @@
 on:
-  release:
-    types: [created]
+  push:
+    branches:
+      - master
 
 env:
   ORG_GRADLE_PROJECT_githubUsername: ${{ secrets.actor }}
