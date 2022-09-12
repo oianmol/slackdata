@@ -1,3 +1,23 @@
+CREATE TABLE IF NOT EXISTS slackWorkspaces(uid TEXT NOT NULL PRIMARY KEY,
+                                               name TEXT NOT NULL ,
+                                               domain TEXT NOT NULL,
+                                               picUrl TEXT DEFAULT NULL);
+
+insertWorkspace:
+INSERT OR REPLACE INTO slackWorkspaces(uid,name,domain,picUrl) VALUES (?,?,?,?);
+
+countWorkspaces:
+SELECT COUNT(*) FROM slackWorkspaces;
+
+selectWorkspaces:
+SELECT * FROM slackWorkspaces WHERE name LIKE '%' || :params || '%' OR domain LIKE '%' || :params || '%' ORDER BY name ASC;
+
+selectAllWorkspaces:
+SELECT * FROM slackWorkspaces ORDER BY name ASC;
+
+selectWorkspaceById:
+SELECT * FROM slackWorkspaces WHERE uid = :workSpaceId;
+
 CREATE TABLE IF NOT EXISTS slackChannel(
     uid TEXT NOT NULL PRIMARY KEY,
     name TEXT DEFAULT NULL ,
@@ -33,6 +53,7 @@ SELECT * FROM slackMessage AS channelMessage JOIN (SELECT channelId, max(modifie
 deleteAllChannels:
 DELETE FROM slackChannel;
 
+
 CREATE TABLE IF NOT EXISTS slackMessage(
     uid TEXT NOT NULL PRIMARY KEY,
     channelId TEXT  DEFAULT NULL ,
@@ -57,19 +78,22 @@ DELETE FROM slackMessage;
 
 
 CREATE TABLE IF NOT EXISTS slackUser(
-    uid TEXT NOT NULL PRIMARY KEY,
-    fName TEXT  DEFAULT NULL ,
-    lName TEXT DEFAULT NULL ,
-    photo TEXT  DEFAULT NULL ,
-    createdDate INTEGER  DEFAULT NULL ,
-    modifiedDate INTEGER DEFAULT NULL
+    uuid TEXT NOT NULL PRIMARY KEY,
+    gender TEXT DEFAULT NULL,
+    name TEXT NOT NULL,
+    location TEXT DEFAULT NULL,
+    email TEXT NOT NULL,
+   username TEXT NOT NULL,
+   userSince INTEGER NOT NULL,
+   phone TEXT NOT NULL,
+    avatarUrl TEXT  NOT NULL
 );
 
 insertUser:
-INSERT OR REPLACE INTO slackUser(uid,fName,lName,photo,createdDate,modifiedDate) VALUES(?,?,?,?,?,?);
+INSERT OR REPLACE INTO slackUser(uuid,gender,name,location,email,username,userSince,phone,avatarUrl) VALUES (?,?,?,?,?,?,?,?,?);
 
 selectAllUsers:
-SELECT * FROM slackUser ORDER BY modifiedDate DESC ;
+SELECT * FROM slackUser ORDER BY name DESC ;
 
 deleteAllUsers:
 DELETE FROM slackUser;

@@ -1,8 +1,8 @@
 package dev.baseio.slackdata.injection
 
-import dev.baseio.slackdomain.domain.usecases.channels.*
-import dev.baseio.slackdomain.domain.usecases.chat.UseCaseSendMessage
-import dev.baseio.slackdomain.domain.usecases.chat.UseCaseFetchMessages
+import dev.baseio.slackdomain.usecases.chat.UseCaseSendMessage
+import dev.baseio.slackdomain.usecases.channels.*
+import dev.baseio.slackdomain.usecases.chat.UseCaseFetchMessages
 import org.koin.dsl.module
 
 val useCaseModule = module {

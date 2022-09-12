@@ -1,20 +1,20 @@
 package dev.baseio.slackdata.mapper
 
 import database.SlackChannel
-import dev.baseio.slackdomain.domain.model.users.DomainLayerUsers
+import dev.baseio.slackdomain.model.users.DomainLayerUsers
 
 class SlackUserChannelMapper :
-  EntityMapper<DomainLayerUsers.SlackUser, SlackChannel> {
-  override fun mapToDomain(entity: SlackChannel): DomainLayerUsers.SlackUser {
+  EntityMapper<DomainLayerUsers.SKUser, SlackChannel> {
+  override fun mapToDomain(entity: SlackChannel): DomainLayerUsers.SKUser {
     TODO("Not yet implemented")
   }
 
-  override fun mapToData(model: DomainLayerUsers.SlackUser): SlackChannel {
+  override fun mapToData(model: DomainLayerUsers.SKUser): SlackChannel {
     return SlackChannel(
-      model.login,
+      model.username,
       model.name,
       isStarred = 0L,
-      photo = model.picture,
+      photo = model.avatarUrl,
       email = "",
       createdDate = null,
       modifiedDate = null,

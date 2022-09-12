@@ -1,27 +1,32 @@
 package dev.baseio.slackdata.mapper
 
-import dev.baseio.slackdomain.domain.model.users.DomainLayerUsers
-import dev.baseio.slackdomain.domain.model.users.RandomUser
-import kotlinx.datetime.Clock
+import database.SlackUser
+import dev.baseio.slackdomain.model.users.DomainLayerUsers
 
-class SlackUserMapper : EntityMapper<DomainLayerUsers.SlackUser, RandomUser> {
-  override fun mapToDomain(entity: RandomUser): DomainLayerUsers.SlackUser {
-    return DomainLayerUsers.SlackUser(
-      "Male",
-      entity.name(),
-      "City",
-      "anmol@gmail.com",
-      entity.name(),
-      Clock.System.now().toEpochMilliseconds(),
-       Clock.System.now().toEpochMilliseconds(),
-      "8284866938",
-      "8284866938",
-      "https://lh3.googleusercontent.com/a-/AFdZucqng-xqztAwJco6kqpNaehNMg6JbX4C5rYwv9VsNQ=s576-p-rw-no",
-      "IN"
-    )
+class SlackUserMapper : EntityMapper<DomainLayerUsers.SKUser, SlackUser> {
+  override fun mapToDomain(entity: SlackUser): DomainLayerUsers.SKUser {
+    return entity.toSkUser()
   }
 
-  override fun mapToData(model: DomainLayerUsers.SlackUser): RandomUser {
-    TODO("not needed!")
+  override fun mapToData(model: DomainLayerUsers.SKUser): SlackUser {
+    return model.toDBSlackUser()
   }
+}
+
+fun DomainLayerUsers.SKUser.toDBSlackUser(): SlackUser {
+  return SlackUser(
+    uuid, gender, name, location, email, username,
+    this.userSince,
+    phone,
+    avatarUrl
+  )
+}
+
+fun SlackUser.toSkUser(): DomainLayerUsers.SKUser {
+  return DomainLayerUsers.SKUser(
+    uuid, gender, name, location, email, username,
+    userSince,
+    phone,
+    avatarUrl
+  )
 }

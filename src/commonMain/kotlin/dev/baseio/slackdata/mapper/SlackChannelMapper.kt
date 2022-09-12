@@ -1,12 +1,12 @@
 package dev.baseio.slackdata.mapper
 
 import database.SlackChannel
-import dev.baseio.slackdomain.domain.model.channel.DomainLayerChannels
+import dev.baseio.slackdomain.model.channel.DomainLayerChannels
 
 class SlackChannelMapper constructor() :
-  EntityMapper<DomainLayerChannels.SlackChannel, SlackChannel> {
-  override fun mapToDomain(entity: SlackChannel): DomainLayerChannels.SlackChannel {
-    return DomainLayerChannels.SlackChannel(
+  EntityMapper<DomainLayerChannels.SKChannel, SlackChannel> {
+  override fun mapToDomain(entity: SlackChannel): DomainLayerChannels.SKChannel {
+    return DomainLayerChannels.SKChannel(
       isStarred = entity.isStarred == 1L,
       isPrivate = entity.isPrivate == 1L,
       uuid = entity.uid,
@@ -20,7 +20,7 @@ class SlackChannelMapper constructor() :
     )
   }
 
-  override fun mapToData(model: DomainLayerChannels.SlackChannel): SlackChannel {
+  override fun mapToData(model: DomainLayerChannels.SKChannel): SlackChannel {
     return SlackChannel(
       model.uuid ?: model.name!!,
       model.name,
