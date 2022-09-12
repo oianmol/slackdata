@@ -15,6 +15,7 @@ class SKDataSourceCreateUsersImpl(
       users.forEach {
         slackDB.slackDBQueries.insertUser(
           it.uuid,
+          it.workspaceId,
           it.gender,
           it.name,
           it.location,

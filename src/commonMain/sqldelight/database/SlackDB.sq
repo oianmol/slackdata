@@ -80,6 +80,7 @@ DELETE FROM slackMessage;
 
 CREATE TABLE IF NOT EXISTS slackUser(
     uuid TEXT NOT NULL PRIMARY KEY,
+    workspaceId TEXT NOT NULL ,
     gender TEXT DEFAULT NULL,
     name TEXT NOT NULL,
     location TEXT DEFAULT NULL,
@@ -91,7 +92,7 @@ CREATE TABLE IF NOT EXISTS slackUser(
 );
 
 insertUser:
-INSERT OR REPLACE INTO slackUser(uuid,gender,name,location,email,username,userSince,phone,avatarUrl) VALUES (?,?,?,?,?,?,?,?,?);
+INSERT OR REPLACE INTO slackUser(uuid,workspaceId,gender,name,location,email,username,userSince,phone,avatarUrl) VALUES (?,?,?,?,?,?,?,?,?,?);
 
 selectAllUsers:
 SELECT * FROM slackUser ORDER BY name DESC ;

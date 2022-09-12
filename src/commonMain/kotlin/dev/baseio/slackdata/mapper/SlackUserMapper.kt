@@ -15,7 +15,7 @@ class SlackUserMapper : EntityMapper<DomainLayerUsers.SKUser, SlackUser> {
 
 fun DomainLayerUsers.SKUser.toDBSlackUser(): SlackUser {
   return SlackUser(
-    uuid, gender, name, location, email, username,
+    uuid, workspaceId, gender, name, location, email, username,
     this.userSince,
     phone,
     avatarUrl
@@ -24,7 +24,7 @@ fun DomainLayerUsers.SKUser.toDBSlackUser(): SlackUser {
 
 fun SlackUser.toSkUser(): DomainLayerUsers.SKUser {
   return DomainLayerUsers.SKUser(
-    uuid, gender, name, location, email, username,
+    uuid, workspaceId, gender, name, location, email, username,
     userSince,
     phone,
     avatarUrl

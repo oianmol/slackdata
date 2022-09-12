@@ -1,7 +1,7 @@
 package dev.baseio.slackdata.injection
 
 import dev.baseio.slackdata.datasources.channels.SKDataSourceChannelsImpl
-import dev.baseio.slackdata.datasources.channels.SKDataSourceCreateChannelImpl
+import dev.baseio.slackdata.datasources.channels.SKDataSourceCreateChannelsImpl
 import dev.baseio.slackdata.datasources.channels.SlackSKDataSourceChannelLastMessage
 import dev.baseio.slackdata.datasources.messages.SlackSKDataSourceMessagesImpl
 import dev.baseio.slackdata.datasources.users.SKDataSourceCreateUsersImpl
@@ -10,7 +10,7 @@ import dev.baseio.slackdata.datasources.workspaces.SKDataSourceCreateWorkspacesI
 import dev.baseio.slackdata.datasources.workspaces.SKDataSourceWorkspacesImpl
 import dev.baseio.slackdomain.datasources.channels.SKDataSourceChannelLastMessage
 import dev.baseio.slackdomain.datasources.channels.SKDataSourceChannels
-import dev.baseio.slackdomain.datasources.channels.SKDataSourceCreateChannel
+import dev.baseio.slackdomain.datasources.channels.SKDataSourceCreateChannels
 import dev.baseio.slackdomain.datasources.messages.SKDataSourceMessages
 import dev.baseio.slackdomain.datasources.users.SKDataSourceCreateUsers
 import dev.baseio.slackdomain.datasources.users.SKDataSourceUsers
@@ -28,8 +28,8 @@ val dataSourceModule = module {
   single<SKDataSourceWorkspaces> {
     SKDataSourceWorkspacesImpl(get(), get(SlackWorkspaceMapperQualifier), get())
   }
-  single<SKDataSourceCreateChannel> {
-    SKDataSourceCreateChannelImpl(
+  single<SKDataSourceCreateChannels> {
+    SKDataSourceCreateChannelsImpl(
       get(),
       get(qualifier = SlackChannelChannelQualifier),
       get()

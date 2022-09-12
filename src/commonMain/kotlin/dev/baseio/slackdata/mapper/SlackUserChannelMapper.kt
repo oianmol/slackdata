@@ -12,6 +12,7 @@ class SlackUserChannelMapper :
   override fun mapToData(model: DomainLayerUsers.SKUser): SlackChannel {
     return SlackChannel(
       model.username,
+      model.workspaceId,
       model.name,
       isStarred = 0L,
       photo = model.avatarUrl,

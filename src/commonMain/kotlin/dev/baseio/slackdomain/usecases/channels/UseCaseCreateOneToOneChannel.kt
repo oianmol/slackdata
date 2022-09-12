@@ -1,12 +1,12 @@
 package dev.baseio.slackdomain.usecases.channels
 
 import dev.baseio.slackdomain.model.users.DomainLayerUsers
-import dev.baseio.slackdomain.datasources.channels.SKDataSourceCreateChannel
+import dev.baseio.slackdomain.datasources.channels.SKDataSourceCreateChannels
 import dev.baseio.slackdomain.usecases.BaseUseCase
 
-class UseCaseCreateOneToOneChannel(private val SKDataSourceCreateChannel: SKDataSourceCreateChannel) :
+class UseCaseCreateOneToOneChannel(private val SKDataSourceCreateChannels: SKDataSourceCreateChannels) :
   BaseUseCase<Unit, List<DomainLayerUsers.SKUser>> {
   override suspend fun perform(params: List<DomainLayerUsers.SKUser>) {
-    return SKDataSourceCreateChannel.saveOneToOneChannels(params)
+    return SKDataSourceCreateChannels.saveOneToOneChannels(params)
   }
 }
