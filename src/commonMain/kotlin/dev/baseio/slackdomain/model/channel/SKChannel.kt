@@ -4,6 +4,7 @@ package dev.baseio.slackdomain.model.channel
 interface DomainLayerChannels {
   data class SKChannel(
     val uuid: String? = null,
+    val workspaceId:String,
     val name: String? = null,
     val createdDate: Long? = null,
     val modifiedDate: Long? = null,

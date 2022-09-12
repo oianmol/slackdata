@@ -20,6 +20,7 @@ SELECT * FROM slackWorkspaces WHERE uid = :workSpaceId;
 
 CREATE TABLE IF NOT EXISTS slackChannel(
     uid TEXT NOT NULL PRIMARY KEY,
+    workspaceId TEXT NOT NULL,
     name TEXT DEFAULT NULL ,
     email TEXT DEFAULT NULL ,
     createdDate INTEGER  DEFAULT NULL ,
@@ -33,7 +34,7 @@ CREATE TABLE IF NOT EXISTS slackChannel(
 );
 
 insertChannel:
-INSERT OR REPLACE INTO slackChannel(uid,name,email,createdDate,modifiedDate,isMuted,isStarred,isPrivate,isShareOutSide,photo,isOneToOne) VALUES(?,?,?,?,?,?,?,?,?,?,?);
+INSERT OR REPLACE INTO slackChannel(uid,workspaceId,name,email,createdDate,modifiedDate,isMuted,isStarred,isPrivate,isShareOutSide,photo,isOneToOne) VALUES(?,?,?,?,?,?,?,?,?,?,?,?);
 
 countChannels:
 SELECT COUNt(*) FROM slackChannel;

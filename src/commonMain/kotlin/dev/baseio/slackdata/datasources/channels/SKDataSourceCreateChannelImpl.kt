@@ -17,6 +17,12 @@ class SKDataSourceCreateChannelImpl(
 ) :
   SKDataSourceCreateChannel {
 
+  override suspend fun saveChannels(channels: MutableList<DomainLayerChannels.SKChannel>) {
+    channels.forEach { skChannel ->
+      saveChannel(skChannel)
+    }
+  }
+
   override suspend fun saveOneToOneChannels(params: List<DomainLayerUsers.SKUser>) {
     return withContext(coroutineMainDispatcherProvider.io) {
       params.forEach {

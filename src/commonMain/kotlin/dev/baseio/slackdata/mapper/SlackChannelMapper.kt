@@ -16,21 +16,23 @@ class SlackChannelMapper constructor() :
       modifiedDate = entity.modifiedDate,
       isShareOutSide = entity.isShareOutSide == 1L,
       isOneToOne = entity.isOneToOne == 1L,
-      avatarUrl = entity.photo
+      avatarUrl = entity.photo,
+      workspaceId = entity.workspaceId
     )
   }
 
   override fun mapToData(model: DomainLayerChannels.SKChannel): SlackChannel {
     return SlackChannel(
-      model.uuid ?: model.name!!,
-      model.name,
+      uid = model.uuid ?: model.name!!,
+      name = model.name,
       isStarred = model.isStarred.let { if (it == true) 1L else 0L },
       createdDate = model.createdDate,
       modifiedDate = model.modifiedDate,
       isPrivate = model.isPrivate.let { if (it == true) 1L else 0L },
       isShareOutSide = model.isShareOutSide.let { if (it == true) 1L else 0L },
       isOneToOne = model.isOneToOne.let { if (it == true) 1L else 0L },
-      photo = model.avatarUrl, email = "", isMuted = model.isMuted.let { if (it == true) 1L else 0L }
+      photo = model.avatarUrl, email = "", isMuted = model.isMuted.let { if (it == true) 1L else 0L },
+      workspaceId = model.workspaceId
     )
   }
 }

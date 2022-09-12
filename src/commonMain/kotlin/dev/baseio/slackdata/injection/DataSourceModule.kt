@@ -4,6 +4,7 @@ import dev.baseio.slackdata.datasources.channels.SKDataSourceChannelsImpl
 import dev.baseio.slackdata.datasources.channels.SKDataSourceCreateChannelImpl
 import dev.baseio.slackdata.datasources.channels.SlackSKDataSourceChannelLastMessage
 import dev.baseio.slackdata.datasources.messages.SlackSKDataSourceMessagesImpl
+import dev.baseio.slackdata.datasources.users.SKDataSourceCreateUsersImpl
 import dev.baseio.slackdata.datasources.users.SKDataSourceUsersImpl
 import dev.baseio.slackdata.datasources.workspaces.SKDataSourceCreateWorkspacesImpl
 import dev.baseio.slackdata.datasources.workspaces.SKDataSourceWorkspacesImpl
@@ -11,12 +12,16 @@ import dev.baseio.slackdomain.datasources.channels.SKDataSourceChannelLastMessag
 import dev.baseio.slackdomain.datasources.channels.SKDataSourceChannels
 import dev.baseio.slackdomain.datasources.channels.SKDataSourceCreateChannel
 import dev.baseio.slackdomain.datasources.messages.SKDataSourceMessages
+import dev.baseio.slackdomain.datasources.users.SKDataSourceCreateUsers
 import dev.baseio.slackdomain.datasources.users.SKDataSourceUsers
 import dev.baseio.slackdomain.datasources.workspaces.SKDataSourceCreateWorkspaces
 import dev.baseio.slackdomain.datasources.workspaces.SKDataSourceWorkspaces
 import org.koin.dsl.module
 
 val dataSourceModule = module {
+  single<SKDataSourceCreateUsers> {
+    SKDataSourceCreateUsersImpl(get(), get())
+  }
   single<SKDataSourceCreateWorkspaces> {
     SKDataSourceCreateWorkspacesImpl(get(), get())
   }

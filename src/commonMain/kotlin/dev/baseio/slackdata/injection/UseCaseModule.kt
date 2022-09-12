@@ -11,7 +11,7 @@ val useCaseModule = module {
   single { UseCaseFetchMessages(get()) }
   single { UseCaseSendMessage(get()) }
   single { UseCaseCreateChannel(get()) }
-  single { UseCaseCreateChannels(get()) }
+  single { UseCaseCreateOneToOneChannel(get()) }
   single { UseCaseGetChannel(get()) }
   single { UseCaseFetchChannelCount(get()) }
   single { UseCaseSearchChannel(get()) }
