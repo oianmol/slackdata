@@ -1,7 +1,7 @@
 package dev.baseio.slackdomain.usecases.channels
 
 import dev.baseio.slackdomain.model.users.DomainLayerUsers
-import dev.baseio.slackdomain.datasources.channels.SKDataSourceCreateChannels
+import dev.baseio.slackdomain.datasources.local.channels.SKDataSourceCreateChannels
 import dev.baseio.slackdomain.usecases.BaseUseCase
 
 class UseCaseCreateOneToOneChannel(private val SKDataSourceCreateChannels: SKDataSourceCreateChannels) :

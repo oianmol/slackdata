@@ -6,7 +6,7 @@ import dev.baseio.slackdata.local.asFlow
 import dev.baseio.slackdata.local.mapToList
 import dev.baseio.slackdata.mapper.EntityMapper
 import dev.baseio.slackdomain.CoroutineDispatcherProvider
-import dev.baseio.slackdomain.datasources.workspaces.SKDataSourceWorkspaces
+import dev.baseio.slackdomain.datasources.local.workspaces.SKDataSourceWorkspaces
 import dev.baseio.slackdomain.model.workspaces.DomainLayerWorkspaces
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -17,6 +17,22 @@ class SKDataSourceWorkspacesImpl(
   private val entityMapper: EntityMapper<DomainLayerWorkspaces.SKWorkspace, SlackWorkspaces>,
   private val coroutineDispatcherProvider: CoroutineDispatcherProvider
 ) : SKDataSourceWorkspaces {
+
+  override suspend fun setLastSelected(skWorkspace: DomainLayerWorkspaces.SKWorkspace) {
+    withContext(coroutineDispatcherProvider.io) {
+      slackDB.slackDBQueries.markAllNotSelected()
+      slackDB.slackDBQueries.setLastSelected(skWorkspace.uuid)
+    }
+  }
+
+  override suspend fun lastSelectedWorkspace(): DomainLayerWorkspaces.SKWorkspace? {
+    return withContext(coroutineDispatcherProvider.io) {
+      slackDB.slackDBQueries.lastSelected().executeAsOneOrNull()?.let { slackWorkspace ->
+        entityMapper.mapToDomain(slackWorkspace)
+      }
+    }
+  }
+
   override suspend fun workspacesCount(): Long {
     return withContext(coroutineDispatcherProvider.io) {
       slackDB.slackDBQueries.countWorkspaces().executeAsOneOrNull() ?: 0

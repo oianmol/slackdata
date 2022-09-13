@@ -1,4 +1,4 @@
-package dev.baseio.slackdomain.datasources.messages
+package dev.baseio.slackdomain.datasources.local.messages
 
 
 import dev.baseio.slackdomain.model.message.DomainLayerMessages

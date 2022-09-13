@@ -7,7 +7,7 @@ import dev.baseio.slackdata.local.asFlow
 import dev.baseio.slackdata.local.mapToList
 import dev.baseio.slackdata.mapper.EntityMapper
 import dev.baseio.slackdomain.model.message.DomainLayerMessages
-import dev.baseio.slackdomain.datasources.messages.SKDataSourceMessages
+import dev.baseio.slackdomain.datasources.local.messages.SKDataSourceMessages
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.withContext
 

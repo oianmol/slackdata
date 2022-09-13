@@ -1,7 +1,7 @@
 package dev.baseio.slackdomain.usecases.channels
 
 import dev.baseio.slackdomain.model.users.DomainLayerUsers
-import dev.baseio.slackdomain.datasources.users.SKDataSourceUsers
+import dev.baseio.slackdomain.datasources.local.users.SKDataSourceUsers
 import dev.baseio.slackdomain.model.workspaces.DomainLayerWorkspaces
 import dev.baseio.slackdomain.usecases.BaseUseCase
 

@@ -5,7 +5,7 @@ import dev.baseio.database.SlackDB
 import dev.baseio.slackdomain.CoroutineDispatcherProvider
 import dev.baseio.slackdata.mapper.EntityMapper
 import dev.baseio.slackdomain.model.users.DomainLayerUsers
-import dev.baseio.slackdomain.datasources.users.SKDataSourceUsers
+import dev.baseio.slackdomain.datasources.local.users.SKDataSourceUsers
 import dev.baseio.slackdomain.model.workspaces.DomainLayerWorkspaces
 import kotlinx.coroutines.withContext
 

@@ -5,6 +5,7 @@ interface DomainLayerWorkspaces {
     val uuid: String,
     val name: String,
     val domain: String,
-    val picUrl: String?
+    val picUrl: String?,
+    val lastSelected: Boolean = false
   )
 }

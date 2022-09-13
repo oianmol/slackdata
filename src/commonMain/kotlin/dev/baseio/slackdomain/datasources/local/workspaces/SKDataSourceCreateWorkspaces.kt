@@ -1,4 +1,4 @@
-package dev.baseio.slackdomain.datasources.workspaces
+package dev.baseio.slackdomain.datasources.local.workspaces
 
 import dev.baseio.slackdomain.model.workspaces.DomainLayerWorkspaces
 

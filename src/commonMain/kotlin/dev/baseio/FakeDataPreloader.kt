@@ -1,8 +1,8 @@
 package dev.baseio
 
-import dev.baseio.slackdomain.datasources.channels.SKDataSourceCreateChannels
-import dev.baseio.slackdomain.datasources.users.SKDataSourceCreateUsers
-import dev.baseio.slackdomain.datasources.workspaces.SKDataSourceCreateWorkspaces
+import dev.baseio.slackdomain.datasources.local.channels.SKDataSourceCreateChannels
+import dev.baseio.slackdomain.datasources.local.users.SKDataSourceCreateUsers
+import dev.baseio.slackdomain.datasources.local.workspaces.SKDataSourceCreateWorkspaces
 import dev.baseio.slackdomain.model.channel.DomainLayerChannels
 import dev.baseio.slackdomain.model.users.DomainLayerUsers
 import dev.baseio.slackdomain.model.workspaces.DomainLayerWorkspaces
@@ -19,6 +19,6 @@ class FakeDataPreloader(
     val users = mutableListOf<DomainLayerUsers.SKUser>()
     skDataSourceCreateWorkspaces.saveWorkspaces(workSpaces)
     skDataSourceCreateChannels.saveChannels(channels)
-    skDataSourceCreateUsers.createUsers(users)
+    skDataSourceCreateUsers.saveUsers(users)
   }
 }

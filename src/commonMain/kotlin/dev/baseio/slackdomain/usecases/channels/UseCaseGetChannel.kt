@@ -1,6 +1,6 @@
 package dev.baseio.slackdomain.usecases.channels
 
-import dev.baseio.slackdomain.datasources.channels.SKDataSourceChannels
+import dev.baseio.slackdomain.datasources.local.channels.SKDataSourceChannels
 import dev.baseio.slackdomain.model.channel.DomainLayerChannels
 import dev.baseio.slackdomain.usecases.BaseUseCase
 

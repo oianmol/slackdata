@@ -1,9 +1,11 @@
-package dev.baseio.slackdomain.datasources.workspaces
+package dev.baseio.slackdomain.datasources.local.workspaces
 
 import dev.baseio.slackdomain.model.workspaces.DomainLayerWorkspaces
 import kotlinx.coroutines.flow.Flow
 
 interface SKDataSourceWorkspaces {
+  suspend fun lastSelectedWorkspace(): DomainLayerWorkspaces.SKWorkspace?
+  suspend fun setLastSelected(skWorkspace: DomainLayerWorkspaces.SKWorkspace)
   suspend fun workspacesCount(): Long
   suspend fun getWorkspace(uuid: String): DomainLayerWorkspaces.SKWorkspace?
   fun fetchWorkspaces(): Flow<List<DomainLayerWorkspaces.SKWorkspace>>

@@ -6,7 +6,7 @@ import dev.baseio.slackdomain.CoroutineDispatcherProvider
 import dev.baseio.slackdata.mapper.EntityMapper
 import dev.baseio.slackdomain.model.channel.DomainLayerChannels
 import dev.baseio.slackdomain.model.users.DomainLayerUsers
-import dev.baseio.slackdomain.datasources.channels.SKDataSourceCreateChannels
+import dev.baseio.slackdomain.datasources.local.channels.SKDataSourceCreateChannels
 import kotlinx.coroutines.withContext
 import kotlinx.datetime.Clock
 

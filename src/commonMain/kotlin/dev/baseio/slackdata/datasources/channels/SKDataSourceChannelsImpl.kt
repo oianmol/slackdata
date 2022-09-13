@@ -6,7 +6,7 @@ import dev.baseio.slackdomain.CoroutineDispatcherProvider
 import dev.baseio.slackdata.local.asFlow
 import dev.baseio.slackdata.local.mapToList
 import dev.baseio.slackdata.mapper.EntityMapper
-import dev.baseio.slackdomain.datasources.channels.SKDataSourceChannels
+import dev.baseio.slackdomain.datasources.local.channels.SKDataSourceChannels
 import dev.baseio.slackdomain.model.channel.DomainLayerChannels
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

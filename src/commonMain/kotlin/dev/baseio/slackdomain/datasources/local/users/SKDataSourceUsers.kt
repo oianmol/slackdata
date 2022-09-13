@@ -1,4 +1,4 @@
-package dev.baseio.slackdomain.datasources.users
+package dev.baseio.slackdomain.datasources.local.users
 
 import dev.baseio.slackdomain.model.users.DomainLayerUsers
 import dev.baseio.slackdomain.model.workspaces.DomainLayerWorkspaces

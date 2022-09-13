@@ -1,7 +1,16 @@
 CREATE TABLE IF NOT EXISTS slackWorkspaces(uid TEXT NOT NULL PRIMARY KEY,
                                                name TEXT NOT NULL ,
                                                domain TEXT NOT NULL,
-                                               picUrl TEXT DEFAULT NULL);
+                                               picUrl TEXT DEFAULT NULL,
+                                               lastSelected INTEGER DEFAULT 0);
+lastSelected:
+SELECT * FROM slackWorkspaces WHERE lastSelected == 1;
+
+markAllNotSelected:
+UPDATE slackWorkspaces SET lastSelected = 0 WHERE lastSelected == 1;
+
+setLastSelected:
+UPDATE slackWorkspaces SET lastSelected = 1 WHERE uid = :param;
 
 insertWorkspace:
 INSERT OR REPLACE INTO slackWorkspaces(uid,name,domain,picUrl) VALUES (?,?,?,?);

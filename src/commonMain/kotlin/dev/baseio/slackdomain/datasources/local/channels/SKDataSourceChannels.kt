@@ -1,4 +1,4 @@
-package dev.baseio.slackdomain.datasources.channels
+package dev.baseio.slackdomain.datasources.local.channels
 
 import dev.baseio.slackdomain.model.channel.DomainLayerChannels
 import kotlinx.coroutines.flow.Flow

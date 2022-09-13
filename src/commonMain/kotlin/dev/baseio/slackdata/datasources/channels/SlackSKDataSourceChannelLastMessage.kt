@@ -9,7 +9,7 @@ import dev.baseio.slackdata.local.mapToList
 import dev.baseio.slackdata.mapper.EntityMapper
 import dev.baseio.slackdomain.model.channel.DomainLayerChannels
 import dev.baseio.slackdomain.model.message.DomainLayerMessages
-import dev.baseio.slackdomain.datasources.channels.SKDataSourceChannelLastMessage
+import dev.baseio.slackdomain.datasources.local.channels.SKDataSourceChannelLastMessage
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 

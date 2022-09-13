@@ -8,14 +8,14 @@ import dev.baseio.slackdata.datasources.users.SKDataSourceCreateUsersImpl
 import dev.baseio.slackdata.datasources.users.SKDataSourceUsersImpl
 import dev.baseio.slackdata.datasources.workspaces.SKDataSourceCreateWorkspacesImpl
 import dev.baseio.slackdata.datasources.workspaces.SKDataSourceWorkspacesImpl
-import dev.baseio.slackdomain.datasources.channels.SKDataSourceChannelLastMessage
-import dev.baseio.slackdomain.datasources.channels.SKDataSourceChannels
-import dev.baseio.slackdomain.datasources.channels.SKDataSourceCreateChannels
-import dev.baseio.slackdomain.datasources.messages.SKDataSourceMessages
-import dev.baseio.slackdomain.datasources.users.SKDataSourceCreateUsers
-import dev.baseio.slackdomain.datasources.users.SKDataSourceUsers
-import dev.baseio.slackdomain.datasources.workspaces.SKDataSourceCreateWorkspaces
-import dev.baseio.slackdomain.datasources.workspaces.SKDataSourceWorkspaces
+import dev.baseio.slackdomain.datasources.local.channels.SKDataSourceChannelLastMessage
+import dev.baseio.slackdomain.datasources.local.channels.SKDataSourceChannels
+import dev.baseio.slackdomain.datasources.local.channels.SKDataSourceCreateChannels
+import dev.baseio.slackdomain.datasources.local.messages.SKDataSourceMessages
+import dev.baseio.slackdomain.datasources.local.users.SKDataSourceCreateUsers
+import dev.baseio.slackdomain.datasources.local.users.SKDataSourceUsers
+import dev.baseio.slackdomain.datasources.local.workspaces.SKDataSourceCreateWorkspaces
+import dev.baseio.slackdomain.datasources.local.workspaces.SKDataSourceWorkspaces
 import org.koin.dsl.module
 
 val dataSourceModule = module {
