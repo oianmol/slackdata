@@ -61,7 +61,7 @@ class FakeDataPreloader(
           "4",
           "gophers",
           "gophers.slack.com",
-          "https://avatars.slack-edge.com/https://avatars.slack-edge.com/2019-12-06/850376190706_33364309961e71e9fe4a_88.png",
+          "https://avatars.slack-edge.com/2019-12-06/850376190706_33364309961e71e9fe4a_88.png",
           true
         )
       )
