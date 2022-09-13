@@ -17,7 +17,7 @@ class SKDataSourceCreateWorkspacesImpl(
           skWorkspace.uuid,
           skWorkspace.name,
           skWorkspace.domain,
-          skWorkspace.picUrl
+          skWorkspace.picUrl, if (skWorkspace.lastSelected) 1 else 0
         )
       }
     }

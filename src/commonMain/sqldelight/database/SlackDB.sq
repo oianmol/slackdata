@@ -13,7 +13,7 @@ setLastSelected:
 UPDATE slackWorkspaces SET lastSelected = 1 WHERE uid = :param;
 
 insertWorkspace:
-INSERT OR REPLACE INTO slackWorkspaces(uid,name,domain,picUrl) VALUES (?,?,?,?);
+INSERT OR REPLACE INTO slackWorkspaces(uid,name,domain,picUrl,lastSelected) VALUES (?,?,?,?,?);
 
 countWorkspaces:
 SELECT COUNT(*) FROM slackWorkspaces;
