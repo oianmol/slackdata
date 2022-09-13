@@ -44,7 +44,7 @@ class FakeDataPreloader(
           "mutualmobile",
           "mutualmobile.slack.com",
           "https://avatars.slack-edge.com/2018-07-20/401750958992_1b07bb3c946bc863bfc6_88.png",
-          true
+          false
         )
       )
       add(
@@ -53,7 +53,7 @@ class FakeDataPreloader(
           "androidworldwide",
           "androidworldwide.slack.com",
           "https://avatars.slack-edge.com/2020-09-03/1337922760453_3531ceb03787e9a60507_88.png",
-          true
+          false
         )
       )
       add(
@@ -62,7 +62,7 @@ class FakeDataPreloader(
           "gophers",
           "gophers.slack.com",
           "https://avatars.slack-edge.com/2019-12-06/850376190706_33364309961e71e9fe4a_88.png",
-          true
+          false
         )
       )
 
