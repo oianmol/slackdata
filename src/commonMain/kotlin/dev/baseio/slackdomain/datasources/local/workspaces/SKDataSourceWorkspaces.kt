@@ -5,6 +5,8 @@ import kotlinx.coroutines.flow.Flow
 
 interface SKDataSourceWorkspaces {
   suspend fun lastSelectedWorkspace(): DomainLayerWorkspaces.SKWorkspace?
+  fun lastSelectedWorkspaceAsFlow(): Flow<DomainLayerWorkspaces.SKWorkspace?>
+
   suspend fun setLastSelected(skWorkspace: DomainLayerWorkspaces.SKWorkspace)
   suspend fun workspacesCount(): Long
   suspend fun getWorkspace(uuid: String): DomainLayerWorkspaces.SKWorkspace?

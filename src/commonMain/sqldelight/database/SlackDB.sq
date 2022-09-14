@@ -7,7 +7,7 @@ lastSelected:
 SELECT * FROM slackWorkspaces WHERE lastSelected == 1;
 
 markAllNotSelected:
-UPDATE slackWorkspaces SET lastSelected = 0 WHERE lastSelected == 1;
+UPDATE slackWorkspaces SET lastSelected = 0;
 
 setLastSelected:
 UPDATE slackWorkspaces SET lastSelected = 1 WHERE uid = :param;

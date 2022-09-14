@@ -4,6 +4,7 @@ import database.SlackWorkspaces
 import dev.baseio.database.SlackDB
 import dev.baseio.slackdata.local.asFlow
 import dev.baseio.slackdata.local.mapToList
+import dev.baseio.slackdata.local.mapToOne
 import dev.baseio.slackdata.mapper.EntityMapper
 import dev.baseio.slackdomain.CoroutineDispatcherProvider
 import dev.baseio.slackdomain.datasources.local.workspaces.SKDataSourceWorkspaces
@@ -31,6 +32,15 @@ class SKDataSourceWorkspacesImpl(
         entityMapper.mapToDomain(slackWorkspace)
       }
     }
+  }
+
+  override fun lastSelectedWorkspaceAsFlow(): Flow<DomainLayerWorkspaces.SKWorkspace?> {
+    return slackDB.slackDBQueries.lastSelected()
+      .asFlow()
+      .mapToOne()
+      .map {
+        entityMapper.mapToDomain(it)
+      }
   }
 
   override suspend fun workspacesCount(): Long {
