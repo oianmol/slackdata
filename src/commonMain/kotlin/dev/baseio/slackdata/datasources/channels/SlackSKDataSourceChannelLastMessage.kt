@@ -19,7 +19,7 @@ class SlackSKDataSourceChannelLastMessage constructor(
   private val SKChannelMapper: EntityMapper<DomainLayerChannels.SKChannel, SlackChannel>,
   private val coroutineDispatcherProvider: CoroutineDispatcherProvider
 ) : SKDataSourceChannelLastMessage {
-  override fun fetchChannels(workspaceId: String): Flow<List<DomainLayerMessages.SKLastMessage>> {
+  override fun fetchChannelsWithLastMessage(workspaceId: String): Flow<List<DomainLayerMessages.SKLastMessage>> {
     val chatPager = slackChannelDao.slackDBQueries.selectLastMessageOfChannels(workspaceId)
       .asFlow()
       .mapToList(coroutineDispatcherProvider.default)

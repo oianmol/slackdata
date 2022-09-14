@@ -47,6 +47,16 @@ INSERT OR REPLACE INTO slackChannel(uuid,workspaceId,name,createdDate,modifiedDa
 countChannels:
 SELECT COUNt(*) FROM slackChannel WHERE workspaceId=:workspaceid;
 
+selectRecentChannelsWithMessages:
+SELECT *
+FROM slackChannel
+WHERE  workspaceId=:workspaceId IN (SELECT (SELECT *
+                         FROM slackMessage
+                         WHERE slackChannel.uuid   = slackMessage.channelId
+                         ORDER BY slackMessage.modifiedDate DESC
+                         LIMIT 1)
+                 FROM slackMessage);
+
 selectAllChannelsByName:
 SELECT * FROM slackChannel WHERE workspaceId=:workspaceid AND name LIKE '%' || :params || '%';
 
@@ -57,7 +67,13 @@ selectChannelById:
 SELECT * FROM slackChannel WHERE workspaceId=:workspaceid AND uuid = :channelId;
 
 selectLastMessageOfChannels:
-SELECT * FROM slackMessage  AS channelMessage  JOIN (SELECT channelId, max(modifiedDate) AS received_at FROM slackMessage WHERE workspaceId =:workspaceId GROUP BY channelId) AS channelMessage_last ON channelMessage_last.channelId = channelMessage.channelId AND channelMessage_last.received_at = channelMessage.modifiedDate;
+SELECT * FROM slackMessage
+            AS channelMessage
+            JOIN (SELECT channelId, max(modifiedDate) AS received_at FROM slackMessage
+            WHERE workspaceId =:workspaceId GROUP BY channelId)
+            AS channelMessage_last
+            ON channelMessage_last.channelId = channelMessage.channelId
+            AND channelMessage_last.received_at = channelMessage.modifiedDate;
 
 deleteAllChannels:
 DELETE FROM slackChannel WHERE workspaceId=:workspaceid;

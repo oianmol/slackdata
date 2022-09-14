@@ -10,6 +10,7 @@ import dev.baseio.slackdomain.datasources.local.channels.SKDataSourceChannels
 import dev.baseio.slackdomain.model.channel.DomainLayerChannels
 import dev.baseio.slackdomain.usecases.channels.UseCaseChannelRequest
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.map
 
 class SKDataSourceChannelsImpl(
@@ -17,6 +18,7 @@ class SKDataSourceChannelsImpl(
   private val SKChannelMapper: EntityMapper<DomainLayerChannels.SKChannel, SlackChannel>,
   private val coroutineMainDispatcherProvider: CoroutineDispatcherProvider
 ) : SKDataSourceChannels {
+
   override fun fetchChannelsOrByName(workspaceId: String, params: String?): Flow<List<DomainLayerChannels.SKChannel>> {
     val flow = params?.takeIf { it.isNotEmpty() }?.let {
       slackChannelDao.slackDBQueries.selectAllChannelsByName(workspaceId, params).asFlow()

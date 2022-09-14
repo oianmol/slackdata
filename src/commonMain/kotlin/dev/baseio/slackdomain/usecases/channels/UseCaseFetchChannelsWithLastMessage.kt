@@ -10,7 +10,7 @@ class UseCaseFetchChannelsWithLastMessage(private val SKDataSourceChannelLastMes
   BaseUseCase<List<DomainLayerMessages.SKLastMessage>, String> {
 
   override fun performStreaming(params: String): Flow<List<DomainLayerMessages.SKLastMessage>> {
-    return SKDataSourceChannelLastMessage.fetchChannels(params)
+    return SKDataSourceChannelLastMessage.fetchChannelsWithLastMessage(params)
   }
 
 }
