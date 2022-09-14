@@ -60,7 +60,7 @@ class SKDataSourceCreateChannelsImpl(
         params.avatarUrl,
         params.isOneToOne.let { if (it == true) 1L else 0L }
       )
-      slackChannelDao.slackDBQueries.selectChannelById(params.uuid).executeAsOne()
+      slackChannelDao.slackDBQueries.selectChannelById(params.workspaceId, params.uuid).executeAsOne()
         .let { SKChannelMapper.mapToDomain(it) }
     }
   }

@@ -19,15 +19,26 @@ class SlackSKDataSourceChannelLastMessage constructor(
   private val SKChannelMapper: EntityMapper<DomainLayerChannels.SKChannel, SlackChannel>,
   private val coroutineDispatcherProvider: CoroutineDispatcherProvider
 ) : SKDataSourceChannelLastMessage {
-  override fun fetchChannels(): Flow<List<DomainLayerMessages.SKLastMessage>> {
-    val chatPager = slackChannelDao.slackDBQueries.selectChannelsWithLastMessage()
+  override fun fetchChannels(workspaceId: String): Flow<List<DomainLayerMessages.SKLastMessage>> {
+    val chatPager = slackChannelDao.slackDBQueries.selectLastMessageOfChannels(workspaceId)
       .asFlow()
       .mapToList(coroutineDispatcherProvider.default)
     return chatPager.map {
       it.map { channelsWithLastMessage ->
-        val channel = slackChannelDao.slackDBQueries.selectChannelById(channelsWithLastMessage.channelId!!).executeAsOne()
+        val channel =
+          slackChannelDao.slackDBQueries.selectChannelById(workspaceId, channelsWithLastMessage.channelId!!)
+            .executeAsOne()
         val message =
-          SlackMessage(channelsWithLastMessage.uid, channelsWithLastMessage.channelId, channelsWithLastMessage.message, channelsWithLastMessage.fromUser, channelsWithLastMessage.createdBy, channelsWithLastMessage.createdDate, channelsWithLastMessage.modifiedDate)
+          SlackMessage(
+            channelsWithLastMessage.uuid,
+            channelsWithLastMessage.workspaceId,
+            channelsWithLastMessage.channelId,
+            channelsWithLastMessage.message,
+            channelsWithLastMessage.receiver_,
+            channelsWithLastMessage.sender,
+            channelsWithLastMessage.createdDate,
+            channelsWithLastMessage.modifiedDate
+          )
         DomainLayerMessages.SKLastMessage(
           SKChannelMapper.mapToDomain(channel),
           messagesMapper.mapToDomain(message)

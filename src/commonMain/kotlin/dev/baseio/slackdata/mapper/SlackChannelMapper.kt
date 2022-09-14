@@ -9,7 +9,7 @@ class SlackChannelMapper constructor() :
     return DomainLayerChannels.SKChannel(
       isStarred = entity.isStarred == 1L,
       isPrivate = entity.isPrivate == 1L,
-      uuid = entity.uid,
+      uuid = entity.uuid,
       name = entity.name,
       isMuted = entity.isMuted == 1L,
       createdDate = entity.createdDate,
@@ -23,7 +23,7 @@ class SlackChannelMapper constructor() :
 
   override fun mapToData(model: DomainLayerChannels.SKChannel): SlackChannel {
     return SlackChannel(
-      uid = model.uuid ?: model.name!!,
+      uuid = model.uuid ?: model.name!!,
       name = model.name,
       isStarred = model.isStarred.let { if (it == true) 1L else 0L },
       createdDate = model.createdDate,

@@ -17,9 +17,8 @@ class SKDataSourceUsersImpl constructor(
   SKDataSourceUsers {
   override suspend fun getUsers(workspace: DomainLayerWorkspaces.SKWorkspace): List<DomainLayerUsers.SKUser> {
     return withContext(coroutineMainDispatcherProvider.io) {
-      //TODO get user by workspace
       slackDB.slackDBQueries
-        .selectAllUsers()
+        .selectAllUsers(workspace.uuid)
         .executeAsList()
         .map {
           mapper.mapToDomain(it)

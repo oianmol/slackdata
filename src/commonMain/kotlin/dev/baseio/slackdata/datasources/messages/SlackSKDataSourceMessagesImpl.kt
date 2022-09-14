@@ -16,8 +16,8 @@ class SlackSKDataSourceMessagesImpl constructor(
   private val entityMapper: EntityMapper<DomainLayerMessages.SKMessage, SlackMessage>,
   private val coroutineMainDispatcherProvider: CoroutineDispatcherProvider
 ) : SKDataSourceMessages {
-  override fun fetchMessages(userId: String): Flow<List<DomainLayerMessages.SKMessage>> {
-    return slackMessageDao.slackDBQueries.selectAllMessagesByUserId(userId)
+  override fun fetchMessages(workspaceId: String, userId: String): Flow<List<DomainLayerMessages.SKMessage>> {
+    return slackMessageDao.slackDBQueries.selectAllMessagesByUserId(workspaceId, userId)
       .asFlow()
       .flowOn(coroutineMainDispatcherProvider.io)
       .mapToList(coroutineMainDispatcherProvider.default)
@@ -32,10 +32,11 @@ class SlackSKDataSourceMessagesImpl constructor(
     return withContext(coroutineMainDispatcherProvider.io) {
       slackMessageDao.slackDBQueries.insertMessage(
         params.uuid,
+        params.workspaceId,
         params.channelId,
         params.message,
-        params.userId,
-        params.createdBy,
+        params.receiver,
+        params.sender,
         params.createdDate,
         params.modifiedDate
       )

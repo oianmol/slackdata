@@ -7,10 +7,10 @@ import dev.baseio.slackdomain.usecases.BaseUseCase
 import kotlinx.coroutines.flow.Flow
 
 class UseCaseFetchChannelsWithLastMessage(private val SKDataSourceChannelLastMessage: SKDataSourceChannelLastMessage) :
-  BaseUseCase<List<DomainLayerMessages.SKLastMessage>, Unit> {
+  BaseUseCase<List<DomainLayerMessages.SKLastMessage>, String> {
 
-  override fun performStreamingNullable(params: Unit?): Flow<List<DomainLayerMessages.SKLastMessage>> {
-    return SKDataSourceChannelLastMessage.fetchChannels()
+  override fun performStreaming(params: String): Flow<List<DomainLayerMessages.SKLastMessage>> {
+    return SKDataSourceChannelLastMessage.fetchChannels(params)
   }
 
 }

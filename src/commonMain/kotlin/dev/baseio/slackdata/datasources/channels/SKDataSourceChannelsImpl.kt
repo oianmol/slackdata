@@ -8,19 +8,22 @@ import dev.baseio.slackdata.local.mapToList
 import dev.baseio.slackdata.mapper.EntityMapper
 import dev.baseio.slackdomain.datasources.local.channels.SKDataSourceChannels
 import dev.baseio.slackdomain.model.channel.DomainLayerChannels
+import dev.baseio.slackdomain.usecases.channels.UseCaseChannelRequest
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-class SKDataSourceChannelsImpl(private val slackChannelDao: SlackDB,
-                               private val SKChannelMapper: EntityMapper<DomainLayerChannels.SKChannel, SlackChannel>,
-                               private val coroutineMainDispatcherProvider: CoroutineDispatcherProvider
+class SKDataSourceChannelsImpl(
+  private val slackChannelDao: SlackDB,
+  private val SKChannelMapper: EntityMapper<DomainLayerChannels.SKChannel, SlackChannel>,
+  private val coroutineMainDispatcherProvider: CoroutineDispatcherProvider
 ) : SKDataSourceChannels {
-  override fun fetchChannelsOrByName(params: String?): Flow<List<DomainLayerChannels.SKChannel>> {
+  override fun fetchChannelsOrByName(workspaceId: String, params: String?): Flow<List<DomainLayerChannels.SKChannel>> {
     val flow = params?.takeIf { it.isNotEmpty() }?.let {
-      slackChannelDao.slackDBQueries.selectAllChannelsByName(params).asFlow()
+      slackChannelDao.slackDBQueries.selectAllChannelsByName(workspaceId, params).asFlow()
         .mapToList(coroutineMainDispatcherProvider.default)
     } ?: run {
-      slackChannelDao.slackDBQueries.selectAllChannels().asFlow().mapToList(coroutineMainDispatcherProvider.default)
+      slackChannelDao.slackDBQueries.selectAllChannels(workspaceId).asFlow()
+        .mapToList(coroutineMainDispatcherProvider.default)
     }
     return flow.map {
       it.map { message ->
@@ -29,12 +32,12 @@ class SKDataSourceChannelsImpl(private val slackChannelDao: SlackDB,
     }
   }
 
-  override suspend fun channelCount(): Long {
-    return slackChannelDao.slackDBQueries.countChannels().executeAsOne()
+  override suspend fun channelCount(workspaceId: String): Long {
+    return slackChannelDao.slackDBQueries.countChannels(workspaceId).executeAsOne()
   }
 
-  override fun fetchChannels(): Flow<List<DomainLayerChannels.SKChannel>> {
-    return slackChannelDao.slackDBQueries.selectAllChannels().asFlow()
+  override fun fetchChannels(workspaceId: String): Flow<List<DomainLayerChannels.SKChannel>> {
+    return slackChannelDao.slackDBQueries.selectAllChannels(workspaceId).asFlow()
       .mapToList(coroutineMainDispatcherProvider.default)
       .map { list -> dbToDomList(list) }
   }
@@ -42,8 +45,8 @@ class SKDataSourceChannelsImpl(private val slackChannelDao: SlackDB,
   private fun dbToDomList(list: List<SlackChannel>) =
     list.map { channel -> SKChannelMapper.mapToDomain(channel) }
 
-  override suspend fun getChannel(uuid: String): DomainLayerChannels.SKChannel {
-    val dbSlack = slackChannelDao.slackDBQueries.selectChannelById(uuid).executeAsOne()
+  override suspend fun getChannel(request: UseCaseChannelRequest): DomainLayerChannels.SKChannel {
+    val dbSlack = slackChannelDao.slackDBQueries.selectChannelById(request.workspaceId, request.uuid).executeAsOne()
     return SKChannelMapper.mapToDomain(dbSlack)
   }
 

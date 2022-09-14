@@ -7,10 +7,10 @@ import kotlinx.coroutines.flow.Flow
 
 class UseCaseFetchChannels(
   private val skDataSourceChannels: SKDataSourceChannels,
-) : BaseUseCase<List<DomainLayerChannels.SKChannel>, Unit> {
+) : BaseUseCase<List<DomainLayerChannels.SKChannel>, String> {
 
-  override fun performStreamingNullable(params: Unit?): Flow<List<DomainLayerChannels.SKChannel>> {
-    return skDataSourceChannels.fetchChannels()
+  override fun performStreaming(params: String): Flow<List<DomainLayerChannels.SKChannel>> {
+    return skDataSourceChannels.fetchChannels(params)
   }
 
 }

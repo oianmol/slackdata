@@ -4,5 +4,5 @@ import dev.baseio.slackdomain.model.message.DomainLayerMessages
 import kotlinx.coroutines.flow.Flow
 
 interface SKDataSourceChannelLastMessage {
-  fun fetchChannels(): Flow<List<DomainLayerMessages.SKLastMessage>>
+  fun fetchChannels(workspaceId:String): Flow<List<DomainLayerMessages.SKLastMessage>>
 }
