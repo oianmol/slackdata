@@ -3,7 +3,7 @@ package dev.baseio.slackdata.mapper
 import database.SlackChannel
 import dev.baseio.slackdomain.model.channel.DomainLayerChannels
 
-class SlackChannelMapper constructor() :
+class SlackChannelMapper :
   EntityMapper<DomainLayerChannels.SKChannel, SlackChannel> {
   override fun mapToDomain(entity: SlackChannel): DomainLayerChannels.SKChannel {
     return DomainLayerChannels.SKChannel(
@@ -31,7 +31,7 @@ class SlackChannelMapper constructor() :
       isPrivate = model.isPrivate.let { if (it == true) 1L else 0L },
       isShareOutSide = model.isShareOutSide.let { if (it == true) 1L else 0L },
       isOneToOne = model.isOneToOne.let { if (it == true) 1L else 0L },
-      photo = model.avatarUrl, email = "", isMuted = model.isMuted.let { if (it == true) 1L else 0L },
+      photo = model.avatarUrl, isMuted = model.isMuted.let { if (it == true) 1L else 0L },
       workspaceId = model.workspaceId
     )
   }

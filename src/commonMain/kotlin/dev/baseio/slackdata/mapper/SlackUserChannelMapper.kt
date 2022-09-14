@@ -16,7 +16,6 @@ class SlackUserChannelMapper :
       model.name,
       isStarred = 0L,
       photo = model.avatarUrl,
-      email = "",
       createdDate = null,
       modifiedDate = null,
       isMuted = 0L,
