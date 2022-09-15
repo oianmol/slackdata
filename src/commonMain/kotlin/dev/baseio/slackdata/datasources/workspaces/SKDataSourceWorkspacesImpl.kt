@@ -5,12 +5,14 @@ import dev.baseio.database.SlackDB
 import dev.baseio.slackdata.local.asFlow
 import dev.baseio.slackdata.local.mapToList
 import dev.baseio.slackdata.local.mapToOne
+import dev.baseio.slackdata.local.mapToOneNotNull
 import dev.baseio.slackdata.mapper.EntityMapper
 import dev.baseio.slackdomain.CoroutineDispatcherProvider
 import dev.baseio.slackdomain.datasources.local.workspaces.SKDataSourceWorkspaces
 import dev.baseio.slackdomain.model.workspaces.DomainLayerWorkspaces
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.withContext
 
 class SKDataSourceWorkspacesImpl(
@@ -37,8 +39,8 @@ class SKDataSourceWorkspacesImpl(
   override fun lastSelectedWorkspaceAsFlow(): Flow<DomainLayerWorkspaces.SKWorkspace?> {
     return slackDB.slackDBQueries.lastSelected()
       .asFlow()
-      .mapToOne()
-      .map {
+      .mapToOneNotNull()
+      .mapNotNull {
         entityMapper.mapToDomain(it)
       }
   }
