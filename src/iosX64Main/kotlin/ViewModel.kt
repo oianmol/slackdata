@@ -4,9 +4,9 @@ import kotlinx.coroutines.cancel
 
 actual abstract class ViewModel {
   actual val viewModelScope = CoroutineScope(SupervisorJob() + mainDispatcher)
-  protected actual open fun onCleared() {}
+  actual open fun onClear() {}
   fun clear() {
-    onCleared()
+    onClear()
     viewModelScope.cancel()
   }
 

@@ -6,7 +6,7 @@ actual abstract class ViewModel {
   actual val viewModelScope: CoroutineScope
     get() = CoroutineScope(SupervisorJob() + mainDispatcher)
 
-  protected actual open fun onCleared() {
+  actual open fun onClear() {
     viewModelScope.cancel()
   }
 }

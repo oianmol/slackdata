@@ -7,7 +7,7 @@ actual abstract class ViewModel actual constructor() : AndroidXViewModel() {
   actual val viewModelScope: CoroutineScope
     get() = androidXViewModelScope
 
-  actual override fun onCleared() {
+  actual open fun onClear() {
     super.onCleared()
   }
 }
