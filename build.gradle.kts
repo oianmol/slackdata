@@ -1,21 +1,27 @@
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import io.github.timortel.kotlin_multiplatform_grpc_plugin.GrpcMultiplatformExtension.OutputTarget
+import io.github.timortel.kotlin_multiplatform_grpc_plugin.generate_mulitplatform_sources.GenerateMultiplatformSourcesTask
 
 plugins {
   kotlin("multiplatform") version "1.7.10"
+  kotlin("native.cocoapods") version "1.7.10"
+
   id("com.android.library")
   id("maven-publish")
+  id("com.google.protobuf") version "0.8.18"
   id("com.squareup.sqldelight") version "1.5.3"
+  id("io.github.timortel.kotlin-multiplatform-grpc-plugin") version "0.2.1"
 }
 
 object GithubRepo {
-    val name: String? = System.getenv("GITHUB_REPOSITORY")
-    val path: String = "https://www.github.com/$name"
-    val packages: String = "https://maven.pkg.github.com/$name"
-    val ref: String? = System.getenv("GITHUB_REF")
+  val name: String? = System.getenv("GITHUB_REPOSITORY")
+  val path: String = "https://www.github.com/$name"
+  val packages: String = "https://maven.pkg.github.com/$name"
+  val ref: String? = System.getenv("GITHUB_REF")
 }
 
 object Jvm {
-    val target = JavaVersion.VERSION_1_8
+  val target = JavaVersion.VERSION_1_8
 }
 
 
@@ -26,9 +32,9 @@ publishing {
   repositories {
     mavenLocal()
     repositories.maven {
-        name = "github"
-        url = project.uri(GithubRepo.packages)
-        credentials(PasswordCredentials::class)
+      name = "github"
+      url = project.uri(GithubRepo.packages)
+      credentials(PasswordCredentials::class)
     }.takeIf { GithubRepo.name != null }
   }
 }
@@ -37,22 +43,34 @@ allprojects {
   group = "dev.baseio.slackclone"
   version = System.getenv("GITHUB_REF")?.split('/')?.last() ?: "development"
 
+  repositories {
+    gradlePluginPortal()
+    maven(url = "https://jitpack.io")
+  }
   afterEvaluate {
-        // Remove log pollution until Android support in KMP improves.
-        project.extensions.findByType<KotlinMultiplatformExtension>()?.let { kmpExt ->
-            kmpExt.sourceSets.removeAll { it.name == "androidAndroidTestRelease" }
-        }
+    // Remove log pollution until Android support in KMP improves.
+    project.extensions.findByType<KotlinMultiplatformExtension>()?.let { kmpExt ->
+      kmpExt.sourceSets.removeAll { it.name == "androidAndroidTestRelease" }
     }
+  }
 }
 
 repositories {
   google()
+  maven(url = "https://jitpack.io")
   jcenter()
   mavenCentral()
   gradlePluginPortal()
 }
 
 kotlin {
+  /*cocoapods {
+    summary = "SlackData Library"
+    homepage = "https://github.com/anmol92verma/slackdata"
+    ios.deploymentTarget = "14.1"
+    pod("gRPC-ProtoRPC", moduleName = "GRPCClient")
+    pod("Protobuf", moduleName = "Protobuf")
+  }*/
   jvm {
     compilations.all {
       kotlinOptions.jvmTarget = "1.8"
@@ -86,10 +104,10 @@ kotlin {
   android {
     publishLibraryVariants("release")
     compilations.all {
-            kotlinOptions {
-                jvmTarget = "${Jvm.target}"
-            }
-        }
+      kotlinOptions {
+        jvmTarget = "${Jvm.target}"
+      }
+    }
   }
   sourceSets {
     val commonMain by getting {
@@ -98,13 +116,19 @@ kotlin {
         implementation(Deps.SqlDelight.core)
         implementation(Deps.Kotlinx.coroutines)
         implementation(Deps.Koin.core)
+        implementation(kotlin("stdlib-common"))
+        api("com.github.TimOrtel.GRPC-Kotlin-Multiplatform:grpc-multiplatform-lib:0.2.1")
       }
+      kotlin.srcDir(projectDir.resolve("build/generated/source/kmp-grpc/commonMain/kotlin").canonicalPath)
     }
     val jvmMain by getting {
       dependencies {
         implementation(Deps.Kotlinx.JVM.coroutinesSwing)
         implementation(Deps.SqlDelight.jvmDriver)
+        api(project(":generate-proto"))
+        api("com.github.TimOrtel.GRPC-Kotlin-Multiplatform:grpc-multiplatform-lib-jvm:0.2.1")
       }
+      kotlin.srcDir(projectDir.resolve("build/generated/source/kmp-grpc/jvmMain/kotlin").canonicalPath)
     }
     val sqlDriverNativeMain by creating {
       dependsOn(commonMain)
@@ -140,6 +164,20 @@ kotlin {
   }
 }
 
+dependencies {
+  commonMainApi("com.github.TimOrtel.GRPC-Kotlin-Multiplatform:grpc-multiplatform-lib:0.2.1")
+}
+
+grpcKotlinMultiplatform {
+
+  targetSourcesMap.put(OutputTarget.COMMON, listOf(kotlin.sourceSets.getByName("commonMain")))
+  targetSourcesMap.put(OutputTarget.IOS, listOf(kotlin.sourceSets.getByName("iosX64Main")))
+  targetSourcesMap.put(OutputTarget.JVM, listOf(kotlin.sourceSets.getByName("androidMain")))
+
+  //Specify the folders where your proto files are located, you can list multiple.
+  protoSourceFolders.set(listOf(projectDir.resolve("../protos/src/main/proto")))
+}
+
 kotlin {
   targets.withType<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget> {
     binaries.all {
@@ -158,7 +196,7 @@ sqldelight {
 
 
 android {
-  lint{
+  lint {
     this.abortOnError = false
     this.checkReleaseBuilds = false
     baseline = file("lint-baseline.xml")
