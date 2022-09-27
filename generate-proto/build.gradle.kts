@@ -5,7 +5,7 @@ plugins {
     kotlin("jvm")
 
     id("java")
-    id("com.google.protobuf")
+    id("com.google.protobuf") version "0.8.18"
 }
 
 version = "unspecified"

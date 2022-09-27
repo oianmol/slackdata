@@ -18,4 +18,3 @@ pluginManagement {
 include("generate-proto")
 include("protos")
 rootProject.name = "slackdata"
-
