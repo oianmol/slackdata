@@ -5,19 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="231eca9a-4bad-45b5-bd97-4ee9e884796e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/services/Client.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/services/FakeDataPreloader.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/services/HelloService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../generate-proto/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/../generate-proto/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/../settings.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/data/Database.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/data/WorkspaceDataSource.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/data/impl/ChannelsDataSourceImpl.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/data/impl/WorkspaceDataSourceImpl.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/sqldelight/database/slackschema.sq" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/services/FakeDataPreloader.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/services/FakeDataPreloader.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/services/HelloService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/services/SlackService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../protos/src/main/proto/hello.proto" beforeDir="false" afterPath="$PROJECT_DIR$/../protos/src/main/proto/hello.proto" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +47,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Kotlin Class" />
+        <option value="SqlDelight File" />
+        <option value="SqlDelight Table" />
+        <option value="Kotlin Interface" />
+        <option value="Kotlin Object" />
       </list>
     </option>
   </component>
@@ -76,23 +79,19 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/sqldelight/database" />
+      <recent name="$PROJECT_DIR$/src/main/sqldelight/dev/baseio" />
+    </key>
+    <key name="CreateKotlinClassDialog.RecentsKey">
+      <recent name="dev.baseio.slackserver.data.impl" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="MainKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MainKt" />
       <module name="SlackServer.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="SlackServer" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="SlackServer" />
-      <option name="filePath" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -113,7 +112,8 @@
       <updated>1664283821814</updated>
       <workItem from="1664283823253" duration="554000" />
       <workItem from="1664284399690" duration="64000" />
-      <workItem from="1664284471187" duration="3237000" />
+      <workItem from="1664284471187" duration="3368000" />
+      <workItem from="1664295989114" duration="9557000" />
     </task>
     <servers />
   </component>

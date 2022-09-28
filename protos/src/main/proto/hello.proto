@@ -74,8 +74,8 @@ message SKMessages{
 message Empty {}
 
 service HelloService {
-  rpc getWorkspaces(Empty) returns (SKWorkspaces);
-  rpc getUsers(Empty) returns (SKUsers);
-  rpc getMessages(Empty) returns (SKMessages);
-  rpc getChannels(Empty) returns (SKChannels);
+  rpc getWorkspaces(Empty) returns (stream SKWorkspaces);
+  rpc getUsers(Empty) returns (stream SKUsers);
+  rpc getMessages(Empty) returns (stream SKMessages);
+  rpc getChannels(Empty) returns (stream SKChannels);
 }

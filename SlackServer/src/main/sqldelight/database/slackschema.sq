@@ -1,0 +1,40 @@
+CREATE TABLE IF NOT EXISTS skWorkspace(
+    uuid TEXT NOT NULL,
+    name TEXT NOT NULL,
+    domain TEXT NOT NULL,
+    picUrl TEXT,
+    PRIMARY KEY (uuid)
+);
+
+selectAllWorkspaces:
+SELECT *
+FROM skWorkspace;
+
+insertWorkspace:
+INSERT INTO skWorkspace(uuid,name,domain,picUrl) VALUES (?, ?,?,?);
+
+
+
+CREATE TABLE IF NOT EXISTS skChannel(
+        uuid TEXT NOT NULL,
+       workspaceId TEXT NOT NULL,
+       name TEXT NOT NULL,
+       createdDate INT NOT NULL,
+       modifiedDate INT NOT NULL,
+       isMuted INT NOT NULL,
+       isPrivate INT NOT NULL,
+       isStarred INT NOT NULL,
+       isShareOutSide INT NOT NULL,
+       isOneToOne INT NOT NULL,
+       avatarUrl TEXT NOT NULL,
+    PRIMARY KEY (uuid)
+);
+
+selectAllChannels:
+SELECT *
+FROM skChannel;
+
+insertChannel:
+INSERT INTO skChannel(uuid,workspaceId,name,createdDate,
+modifiedDate,isMuted,isPrivate,isStarred,isShareOutSide,
+isOneToOne,avatarUrl) VALUES (?,?,?,?,?,?,?,?,?,?,?);

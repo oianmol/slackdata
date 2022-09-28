@@ -12,7 +12,6 @@ object FakeDataPreloader {
 
   val channels = buildChannelsForWorkspaces(workSpacesLocal)
 
-
   private fun buildChannelsForWorkspaces(
     workSpaces: MutableList<SKWorkspace>
   ): MutableList<SKChannel> {
