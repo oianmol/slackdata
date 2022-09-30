@@ -1,6 +1,8 @@
 pluginManagement {
     repositories {
         google()
+        mavenLocal()
+        maven(url = "https://jitpack.io")
         jcenter()
         gradlePluginPortal()
         mavenCentral()
@@ -13,6 +15,6 @@ pluginManagement {
         }
     }
 }
-
+include("generate-proto")
+include("protos")
 rootProject.name = "slackdata"
-
