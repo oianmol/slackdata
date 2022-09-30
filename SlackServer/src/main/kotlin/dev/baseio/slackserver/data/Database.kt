@@ -36,5 +36,9 @@ object Database {
   private val sqlDriver: SqlDriver by lazy { dataSource.asJdbcDriver() }
 
 
-  val slackDB by lazy { SlackCloneDB(sqlDriver) }
+  val slackDB by lazy {
+    SlackCloneDB(sqlDriver).also {
+      SlackCloneDB.Schema.create(sqlDriver)
+    }
+  }
 }

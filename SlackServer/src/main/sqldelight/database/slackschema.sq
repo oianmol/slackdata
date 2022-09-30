@@ -12,7 +12,7 @@ SELECT *
 FROM skWorkspace;
 
 insertWorkspace:
-INSERT INTO skWorkspace(uuid,name,domain,picUrl) VALUES (?, ?,?,?);
+INSERT INTO skWorkspace(uuid,name,domain,picUrl,lastSelected) VALUES (?, ?,?,?,?);
 
 
 

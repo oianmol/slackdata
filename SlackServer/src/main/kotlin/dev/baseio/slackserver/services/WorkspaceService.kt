@@ -4,8 +4,8 @@ import database.SkWorkspace
 import dev.baseio.slackdata.protos.*
 import dev.baseio.slackserver.data.WorkspaceDataSource
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.*
+import java.util.UUID
 import kotlin.coroutines.CoroutineContext
 
 class WorkspaceService(
@@ -21,13 +21,16 @@ class WorkspaceService(
   }
 
   override fun getWorkspaces(request: Empty): Flow<SKWorkspaces> {
-    return workspaceDataSource.getWorkspaces().map {
-      val workspaces = it.executeAsList().map { dbWorkspace ->
+    return workspaceDataSource.getWorkspaces().map { query ->
+      val workspaces = query.executeAsList().map { dbWorkspace ->
         dbWorkspace.toGRPC()
       }
       SKWorkspaces.newBuilder()
         .addAllWorkspaces(workspaces)
         .build()
+    }.catch { throwable ->
+      throwable.printStackTrace()
+      emit(SKWorkspaces.newBuilder().build())
     }
   }
 }
@@ -45,7 +48,7 @@ private fun SkWorkspace.toGRPC(): SKWorkspace {
 
 private fun SKWorkspace.toDBWorkspace(): SkWorkspace {
   return SkWorkspace(
-    this.uuid,
+    this.uuid ?: UUID.randomUUID().toString(),
     this.name,
     this.domain,
     this.picUrl,
