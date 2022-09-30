@@ -6,9 +6,10 @@ import database.SkWorkspace
 import kotlinx.coroutines.flow.Flow
 
 interface WorkspaceDataSource {
-  fun getWorkspaces() : Flow<Query<SkWorkspace>>
+  fun getWorkspaces(): Flow<Query<SkWorkspace>>
+  fun saveWorkspace(skWorkspace: SkWorkspace) :SkWorkspace
 }
 
-interface ChannelsDataSource{
-  fun getChannels():Flow<Query<SkChannel>>
+interface ChannelsDataSource {
+  fun getChannels(): Flow<Query<SkChannel>>
 }

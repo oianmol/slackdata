@@ -13,4 +13,15 @@ class WorkspaceDataSourceImpl(private val slackCloneDB: SlackCloneDB) : Workspac
       .selectAllWorkspaces()
       .asFlow()
   }
+
+  override fun saveWorkspace(skWorkspace: SkWorkspace): SkWorkspace {
+    // TODO do checks before saving this!
+    slackCloneDB.slackschemaQueries.insertWorkspace(
+      skWorkspace.uuid,
+      skWorkspace.name,
+      skWorkspace.domain,
+      skWorkspace.picUrl
+    )
+    return skWorkspace
+  }
 }

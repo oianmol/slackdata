@@ -3,6 +3,7 @@ CREATE TABLE IF NOT EXISTS skWorkspace(
     name TEXT NOT NULL,
     domain TEXT NOT NULL,
     picUrl TEXT,
+    lastSelected INT,
     PRIMARY KEY (uuid)
 );
 

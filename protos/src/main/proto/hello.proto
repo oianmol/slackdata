@@ -73,9 +73,19 @@ message SKMessages{
 
 message Empty {}
 
-service HelloService {
+service WorkspaceService {
   rpc getWorkspaces(Empty) returns (stream SKWorkspaces);
-  rpc getUsers(Empty) returns (stream SKUsers);
-  rpc getMessages(Empty) returns (stream SKMessages);
+  rpc saveWorkspace(SKWorkspace) returns (SKWorkspace);
+}
+
+service ChannelsService{
   rpc getChannels(Empty) returns (stream SKChannels);
+}
+service MessagesService{
+  rpc getMessages(Empty) returns (stream SKMessages);
+  rpc saveMessage(SKMessage) returns (SKMessage);
+}
+
+service UsersService{
+  rpc getUsers(Empty) returns (stream SKUsers);
 }

@@ -1,7 +1,8 @@
 import dev.baseio.slackserver.data.Database
 import dev.baseio.slackserver.data.impl.ChannelsDataSourceImpl
 import dev.baseio.slackserver.data.impl.WorkspaceDataSourceImpl
-import dev.baseio.slackserver.services.SlackService
+import dev.baseio.slackserver.services.ChannelService
+import dev.baseio.slackserver.services.WorkspaceService
 import io.grpc.ServerBuilder
 
 fun main() {
@@ -9,8 +10,8 @@ fun main() {
   val channelsDataSource = ChannelsDataSourceImpl(Database.slackDB)
 
   ServerBuilder.forPort(17600)
-    .addService(SlackService(workspaceDataSource = workspaceDataSource,
-      channelsDataSource = channelsDataSource))
+    .addService(WorkspaceService(workspaceDataSource = workspaceDataSource))
+    .addService(ChannelService(channelsDataSource = channelsDataSource))
     .build()
     .start()
     .awaitTermination()

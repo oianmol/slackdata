@@ -127,8 +127,8 @@ kotlin {
         implementation(Deps.Kotlinx.coroutines)
         implementation(Deps.Kotlinx.JVM.coroutinesSwing)
         implementation(Deps.SqlDelight.jvmDriver)
-        api(project(":generate-proto"))
-        api("dev.baseio.grpc:grpc-multiplatform-lib-jvm:0.2.2")
+        implementation(project(":generate-proto"))
+        implementation("dev.baseio.grpc:grpc-multiplatform-lib-jvm:0.2.2")
       }
       kotlin.srcDir(projectDir.resolve("build/generated/source/kmp-grpc/jvmMain/kotlin").canonicalPath)
     }
@@ -169,8 +169,8 @@ kotlin {
         implementation(Deps.Kotlinx.coroutines)
         implementation(Deps.SqlDelight.androidDriver)
         implementation(Deps.AndroidX.lifecycleViewModelKtx)
-        api(project(":generate-proto"))
-        api("dev.baseio.grpc:grpc-multiplatform-lib-android:0.2.2")
+        implementation(project(":generate-proto"))
+        implementation("dev.baseio.grpc:grpc-multiplatform-lib-android:0.2.2")
       }
       kotlin.srcDir(projectDir.resolve("build/generated/source/kmp-grpc/androidMain/kotlin").canonicalPath)
     }
