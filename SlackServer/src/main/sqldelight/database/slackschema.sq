@@ -39,3 +39,22 @@ insertChannel:
 INSERT INTO skChannel(uuid,workspaceId,name,createdDate,
 modifiedDate,isMuted,isPrivate,isStarred,isShareOutSide,
 isOneToOne,avatarUrl) VALUES (?,?,?,?,?,?,?,?,?,?,?);
+
+
+CREATE TABLE IF NOT EXISTS skMessage(
+    uuid TEXT NOT NULL ,
+    workspaceId TEXT  NOT NULL ,
+    channelId TEXT  NOT NULL ,
+    message TEXT NOT NULL ,
+    receiver TEXT  NOT NULL ,
+    sender TEXT  NOT NULL ,
+    createdDate INT  NOT NULL ,
+    modifiedDate INT  NOT NULL,
+    PRIMARY KEY (uuid)
+);
+
+insertMessage:
+INSERT INTO skMessage(uuid,workspaceId,channelId,message,receiver,sender,createdDate,modifiedDate) VALUES(?,?,?,?,?,?,?,?);
+
+selectAllMessages:
+SELECT * FROM skMessage WHERE workspaceId=:workspaceId ORDER BY modifiedDate DESC ;

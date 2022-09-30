@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="231eca9a-4bad-45b5-bd97-4ee9e884796e" name="Changes" comment="added services">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/data/ChannelsDataSource.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/data/DataSources.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/data/WorkspaceDataSource.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/data/Database.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/data/Database.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/services/WorkspaceService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/services/WorkspaceService.kt" afterDir="false" />
+    <list default="true" id="231eca9a-4bad-45b5-bd97-4ee9e884796e" name="Changes" comment="tested streaming of workspaces!">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/data/MessagesDataSource.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/data/impl/MessagesDataSourceImpl.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/services/MessagingService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/sqldelight/database/slackschema.sq" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/sqldelight/database/slackschema.sq" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,10 +67,10 @@
       <list>
         <option value="SqlDelight File" />
         <option value="SqlDelight Table" />
-        <option value="Kotlin Interface" />
         <option value="Kotlin Object" />
         <option value="Kotlin File" />
         <option value="Kotlin Class" />
+        <option value="Kotlin Interface" />
       </list>
     </option>
   </component>
@@ -204,7 +204,7 @@
       <workItem from="1664530117997" duration="1859000" />
       <workItem from="1664539586477" duration="2675000" />
       <workItem from="1664547096643" duration="946000" />
-      <workItem from="1664548051968" duration="369000" />
+      <workItem from="1664548051968" duration="1827000" />
     </task>
     <task id="LOCAL-00001" summary="setup sqldelight and gRPC service!">
       <created>1664372471497</created>
@@ -220,7 +220,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664542198548</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="tested streaming of workspaces!">
+      <created>1664548560342</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1664548560342</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -240,25 +247,16 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="setup sqldelight and gRPC service!" />
     <MESSAGE value="added services" />
-    <option name="LAST_COMMIT_MESSAGE" value="added services" />
+    <MESSAGE value="tested streaming of workspaces!" />
+    <option name="LAST_COMMIT_MESSAGE" value="tested streaming of workspaces!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/data/impl/WorkspaceDataSourceImpl.kt</url>
-          <line>11</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.sqldelight/runtime-jvm/1.5.3/4c73b473d1f8bcd7eba3dfdbb7b4321def72e68a/runtime-jvm-1.5.3-sources.jar!/commonMain/com/squareup/sqldelight/Query.kt</url>
-          <line>133</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.sqldelight/runtime-jvm/1.5.3/4c73b473d1f8bcd7eba3dfdbb7b4321def72e68a/runtime-jvm-1.5.3-sources.jar!/commonMain/com/squareup/sqldelight/Query.kt</url>
-          <line>134</line>
-          <option name="timeStamp" value="7" />
+          <url>file://$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/services/WorkspaceService.kt</url>
+          <line>39</line>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
