@@ -71,7 +71,7 @@ message SKMessages{
   repeated SKMessage messages = 1;
 }
 
-message SKGetMessageRequest{
+message SKWorkspaceChannelRequest{
   string workspaceId = 1;
   string channelId = 2;
 }
@@ -93,10 +93,10 @@ service ChannelsService{
 }
 
 service MessagesService{
-  rpc getMessages(SKGetMessageRequest) returns (stream SKMessages);
+  rpc getMessages(SKWorkspaceChannelRequest) returns (stream SKMessages);
   rpc saveMessage(SKMessage) returns (SKMessage);
 }
 
 service UsersService{
-  rpc getUsers(Empty) returns (stream SKUsers);
+  rpc getUsers(SKWorkspaceChannelRequest) returns (stream SKUsers);
 }

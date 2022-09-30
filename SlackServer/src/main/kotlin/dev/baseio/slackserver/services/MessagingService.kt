@@ -19,7 +19,7 @@ class MessagingService(
       .toGrpc()
   }
 
-  override fun getMessages(request: SKGetMessageRequest): Flow<SKMessages> {
+  override fun getMessages(request: SKWorkspaceChannelRequest): Flow<SKMessages> {
     return messagesDataSource.getMessages(workspaceId = request.workspaceId, channelId = request.channelId)
       .map { query ->
         val skMessages = query.executeAsList().map { skMessage ->
