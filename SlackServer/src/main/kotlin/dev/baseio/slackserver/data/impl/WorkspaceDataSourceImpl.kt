@@ -20,7 +20,8 @@ class WorkspaceDataSourceImpl(private val slackCloneDB: SlackCloneDB) : Workspac
       skWorkspace.uuid,
       skWorkspace.name,
       skWorkspace.domain,
-      skWorkspace.picUrl
+      skWorkspace.picUrl,
+      skWorkspace.lastSelected
     )
     return skWorkspace
   }

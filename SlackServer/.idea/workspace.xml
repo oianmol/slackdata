@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="231eca9a-4bad-45b5-bd97-4ee9e884796e" name="Changes" comment="tested streaming of workspaces!">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/data/MessagesDataSource.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/data/impl/MessagesDataSourceImpl.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/services/MessagingService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
+    <list default="true" id="231eca9a-4bad-45b5-bd97-4ee9e884796e" name="Changes" comment="add: MessagingService">
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/data/MessagesDataSource.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/data/MessagesDataSource.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/data/impl/MessagesDataSourceImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/data/impl/MessagesDataSourceImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/data/impl/WorkspaceDataSourceImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/data/impl/WorkspaceDataSourceImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/services/MessagingService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/services/MessagingService.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/sqldelight/database/slackschema.sq" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/sqldelight/database/slackschema.sq" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../protos/src/main/proto/hello.proto" beforeDir="false" afterPath="$PROJECT_DIR$/../protos/src/main/proto/hello.proto" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,6 +153,27 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="SlackServer [jar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="jar" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <configuration name="/Users/anmolverma/Desktop/SlackData [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -185,6 +207,7 @@
         <item itemvalue="Kotlin.MainKt" />
         <item itemvalue="Gradle.SlackServer [build]" />
         <item itemvalue="Gradle.SlackServer [clean]" />
+        <item itemvalue="Gradle.SlackServer [jar]" />
         <item itemvalue="Gradle./Users/anmolverma/Desktop/SlackData [build]" />
       </list>
     </recent_temporary>
@@ -204,7 +227,7 @@
       <workItem from="1664530117997" duration="1859000" />
       <workItem from="1664539586477" duration="2675000" />
       <workItem from="1664547096643" duration="946000" />
-      <workItem from="1664548051968" duration="1827000" />
+      <workItem from="1664548051968" duration="2450000" />
     </task>
     <task id="LOCAL-00001" summary="setup sqldelight and gRPC service!">
       <created>1664372471497</created>
@@ -227,7 +250,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664548560342</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="add: MessagingService">
+      <created>1664549887436</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1664549887436</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -248,7 +278,8 @@
     <MESSAGE value="setup sqldelight and gRPC service!" />
     <MESSAGE value="added services" />
     <MESSAGE value="tested streaming of workspaces!" />
-    <option name="LAST_COMMIT_MESSAGE" value="tested streaming of workspaces!" />
+    <MESSAGE value="add: MessagingService" />
+    <option name="LAST_COMMIT_MESSAGE" value="add: MessagingService" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

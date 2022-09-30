@@ -6,5 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface MessagesDataSource {
   fun saveMessage(request: SkMessage): SkMessage
-  fun getMessages(): Flow<Query<SkMessage>>
+  fun getMessages(workspaceId: String, channelId: String): Flow<Query<SkMessage>>
 }

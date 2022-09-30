@@ -57,4 +57,4 @@ insertMessage:
 INSERT INTO skMessage(uuid,workspaceId,channelId,message,receiver,sender,createdDate,modifiedDate) VALUES(?,?,?,?,?,?,?,?);
 
 selectAllMessages:
-SELECT * FROM skMessage WHERE workspaceId=:workspaceId ORDER BY modifiedDate DESC ;
+SELECT * FROM skMessage WHERE workspaceId=:workspaceId AND channelId=:channelId ORDER BY modifiedDate DESC ;
