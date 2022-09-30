@@ -1,15 +1,12 @@
 package dev.baseio.slackserver.services
 
 import database.SkChannel
-import dev.baseio.slackdata.protos.ChannelsServiceGrpcKt
-import dev.baseio.slackdata.protos.Empty
-import dev.baseio.slackdata.protos.SKChannel
-import dev.baseio.slackdata.protos.SKChannels
-import dev.baseio.slackdata.protos.SKWorkspaces
+import dev.baseio.slackdata.protos.*
 import dev.baseio.slackserver.data.ChannelsDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import java.util.UUID
 import kotlin.coroutines.CoroutineContext
 
 class ChannelService(
@@ -17,8 +14,13 @@ class ChannelService(
   private val channelsDataSource: ChannelsDataSource
 ) :
   ChannelsServiceGrpcKt.ChannelsServiceCoroutineImplBase(coroutineContext) {
-  override fun getChannels(request: Empty): Flow<SKChannels> {
-    return channelsDataSource.getChannels().map {
+
+  override suspend fun saveChannel(request: SKChannel): SKChannel {
+    return channelsDataSource.insertChannel(request.toDBChannel()).toGRPC()
+  }
+
+  override fun getChannels(request: SKChannelRequest): Flow<SKChannels> {
+    return channelsDataSource.getChannels(request.workspaceId).map {
       val channels = it.executeAsList().map { dbChannel ->
         dbChannel.toGRPC()
       }
@@ -27,6 +29,23 @@ class ChannelService(
         .build()
     }
   }
+}
+
+private fun SKChannel.toDBChannel(): SkChannel {
+  return SkChannel(
+    this.uuid ?: UUID.randomUUID().toString(),
+    this.workspaceId, this.name,
+    createdDate.toInt(),
+    modifiedDate.toInt(),
+    isMuted.oneOrZero(), isPrivate.oneOrZero(),
+    isStarred.oneOrZero(), isShareOutSide.oneOrZero(),
+    isOneToOne.oneOrZero(),
+    avatarUrl
+  )
+}
+
+private fun Boolean.oneOrZero(): Int {
+  return if (this) 1 else 0
 }
 
 private fun SkChannel.toGRPC(): SKChannel {

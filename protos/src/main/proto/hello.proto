@@ -76,6 +76,10 @@ message SKGetMessageRequest{
   string channelId = 2;
 }
 
+message SKChannelRequest{
+  string workspaceId = 1;
+}
+
 message Empty {}
 
 service WorkspaceService {
@@ -84,8 +88,10 @@ service WorkspaceService {
 }
 
 service ChannelsService{
-  rpc getChannels(Empty) returns (stream SKChannels);
+  rpc getChannels(SKChannelRequest) returns (stream SKChannels);
+  rpc saveChannel(SKChannel) returns (SKChannel);
 }
+
 service MessagesService{
   rpc getMessages(SKGetMessageRequest) returns (stream SKMessages);
   rpc saveMessage(SKMessage) returns (SKMessage);

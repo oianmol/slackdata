@@ -14,7 +14,9 @@ class MessagingService(
   private val messagesDataSource: MessagesDataSourceImpl,
 ) : MessagesServiceGrpcKt.MessagesServiceCoroutineImplBase(coroutineContext) {
   override suspend fun saveMessage(request: SKMessage): SKMessage {
-    return messagesDataSource.saveMessage(request.toDBMessage()).toGrpc()
+    return messagesDataSource
+      .saveMessage(request.toDBMessage())
+      .toGrpc()
   }
 
   override fun getMessages(request: SKGetMessageRequest): Flow<SKMessages> {

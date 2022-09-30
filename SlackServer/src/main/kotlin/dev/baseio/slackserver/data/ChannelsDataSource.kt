@@ -5,5 +5,6 @@ import database.SkChannel
 import kotlinx.coroutines.flow.Flow
 
 interface ChannelsDataSource {
-  fun getChannels(): Flow<Query<SkChannel>>
+  fun getChannels(workspaceId:String): Flow<Query<SkChannel>>
+  abstract fun insertChannel(toDBChannel: SkChannel): SkChannel
 }

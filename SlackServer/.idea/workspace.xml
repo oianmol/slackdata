@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="231eca9a-4bad-45b5-bd97-4ee9e884796e" name="Changes" comment="add: MessagingService">
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/data/MessagesDataSource.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/data/MessagesDataSource.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/data/impl/MessagesDataSourceImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/data/impl/MessagesDataSourceImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/data/impl/WorkspaceDataSourceImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/data/impl/WorkspaceDataSourceImpl.kt" afterDir="false" />
+    <list default="true" id="231eca9a-4bad-45b5-bd97-4ee9e884796e" name="Changes" comment="update: MessagesDataSourceImpl.kt allow saving">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/data/ChannelsDataSource.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/data/ChannelsDataSource.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/data/impl/ChannelsDataSourceImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/data/impl/ChannelsDataSourceImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/services/ChannelService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/services/ChannelService.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/services/MessagingService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/baseio/slackserver/services/MessagingService.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/sqldelight/database/slackschema.sq" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/sqldelight/database/slackschema.sq" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../protos/src/main/proto/hello.proto" beforeDir="false" afterPath="$PROJECT_DIR$/../protos/src/main/proto/hello.proto" afterDir="false" />
@@ -227,7 +228,7 @@
       <workItem from="1664530117997" duration="1859000" />
       <workItem from="1664539586477" duration="2675000" />
       <workItem from="1664547096643" duration="946000" />
-      <workItem from="1664548051968" duration="2450000" />
+      <workItem from="1664548051968" duration="3677000" />
     </task>
     <task id="LOCAL-00001" summary="setup sqldelight and gRPC service!">
       <created>1664372471497</created>
@@ -257,7 +258,21 @@
       <option name="project" value="LOCAL" />
       <updated>1664549887436</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="update: MessagingService, add query params in request">
+      <created>1664550578336</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1664550578336</updated>
+    </task>
+    <task id="LOCAL-00006" summary="update: MessagesDataSourceImpl.kt allow saving">
+      <created>1664550715204</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1664550715204</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -279,7 +294,9 @@
     <MESSAGE value="added services" />
     <MESSAGE value="tested streaming of workspaces!" />
     <MESSAGE value="add: MessagingService" />
-    <option name="LAST_COMMIT_MESSAGE" value="add: MessagingService" />
+    <MESSAGE value="update: MessagingService, add query params in request" />
+    <MESSAGE value="update: MessagesDataSourceImpl.kt allow saving" />
+    <option name="LAST_COMMIT_MESSAGE" value="update: MessagesDataSourceImpl.kt allow saving" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

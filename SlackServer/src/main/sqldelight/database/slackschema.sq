@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS skChannel(
 
 selectAllChannels:
 SELECT *
-FROM skChannel;
+FROM skChannel WHERE workspaceId=:workspaceId;
 
 insertChannel:
 INSERT INTO skChannel(uuid,workspaceId,name,createdDate,
