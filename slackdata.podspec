@@ -1,15 +1,16 @@
 Pod::Spec.new do |spec|
     spec.name                     = 'slackdata'
     spec.version                  = 'development'
-    spec.homepage                 = ''
+    spec.homepage                 = 'https://github.com/anmol92verma/slackdata'
     spec.source                   = { :http=> ''}
     spec.authors                  = ''
     spec.license                  = ''
-    spec.summary                  = ''
+    spec.summary                  = 'SlackData Library'
     spec.vendored_frameworks      = 'build/cocoapods/framework/slackdata.framework'
     spec.libraries                = 'c++'
-                
-                
+    spec.ios.deployment_target = '14.1'
+    spec.dependency 'Protobuf'
+    spec.dependency 'gRPC-ProtoRPC'
                 
     spec.pod_target_xcconfig = {
         'KOTLIN_PROJECT_PATH' => ':',
@@ -28,7 +29,7 @@ Pod::Spec.new do |spec|
                 fi
                 set -ev
                 REPO_ROOT="$PODS_TARGET_SRCROOT"
-                "$REPO_ROOT/../../../../private/var/folders/3_/c4vlzym95ydgftk4x4w80clc0000gn/T/wrap547loc/gradlew" -p "$REPO_ROOT" $KOTLIN_PROJECT_PATH:syncFramework \
+                "$REPO_ROOT/../../../../private/var/folders/3_/c4vlzym95ydgftk4x4w80clc0000gn/T/wrap47loc/gradlew" -p "$REPO_ROOT" $KOTLIN_PROJECT_PATH:syncFramework \
                     -Pkotlin.native.cocoapods.platform=$PLATFORM_NAME \
                     -Pkotlin.native.cocoapods.archs="$ARCHS" \
                     -Pkotlin.native.cocoapods.configuration="$CONFIGURATION"

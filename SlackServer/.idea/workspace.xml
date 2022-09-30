@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="231eca9a-4bad-45b5-bd97-4ee9e884796e" name="Changes" comment="fix: FakeDataPreloader">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/../build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../slackdata.podspec" beforeDir="false" afterPath="$PROJECT_DIR$/../slackdata.podspec" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/commonMain/kotlin/dev/baseio/GrpcPlayground.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../src/commonMain/kotlin/dev/baseio/GrpcCalls.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

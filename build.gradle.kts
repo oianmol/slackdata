@@ -65,13 +65,13 @@ repositories {
 }
 
 kotlin {
- /* cocoapods {
+  cocoapods {
     summary = "SlackData Library"
     homepage = "https://github.com/anmol92verma/slackdata"
     ios.deploymentTarget = "14.1"
     pod("gRPC-ProtoRPC", moduleName = "GRPCClient")
     pod("Protobuf", moduleName = "Protobuf")
-  }*/
+  }
   jvm {
     compilations.all {
       kotlinOptions.jvmTarget = "1.8"
@@ -81,7 +81,7 @@ kotlin {
     }
   }
 
- /* iosX64 {
+  iosX64 {
     binaries {
       framework {
         baseName = "slackdata"
@@ -101,7 +101,7 @@ kotlin {
         baseName = "slackdata"
       }
     }
-  }*/
+  }
   android {
     publishLibraryVariants("release")
     compilations.all {
@@ -132,7 +132,7 @@ kotlin {
       }
       kotlin.srcDir(projectDir.resolve("build/generated/source/kmp-grpc/jvmMain/kotlin").canonicalPath)
     }
-   /* val sqlDriverNativeMain by creating {
+    val sqlDriverNativeMain by creating {
       dependsOn(commonMain)
       dependencies {
         implementation(Deps.SqlDelight.nativeDriver)
@@ -163,7 +163,7 @@ kotlin {
         api("dev.baseio.grpc:grpc-multiplatform-lib-iosx64:0.2.2")
 
       }
-    }*/
+    }
     val androidMain by getting {
       dependencies {
         implementation(Deps.Kotlinx.coroutines)
@@ -180,6 +180,14 @@ kotlin {
 grpcKotlinMultiplatform {
 
   targetSourcesMap.put(OutputTarget.COMMON, listOf(kotlin.sourceSets.getByName("commonMain")))
+  targetSourcesMap.put(
+    OutputTarget.IOS,
+    listOf(
+      kotlin.sourceSets.getByName("iosX64Main"),
+      kotlin.sourceSets.getByName("iosSimulatorArm64Main"),
+      kotlin.sourceSets.getByName("iosArm64Main")
+    )
+  )
   targetSourcesMap.put(OutputTarget.JVM, listOf(kotlin.sourceSets.getByName("jvmMain")))
   targetSourcesMap.put(OutputTarget.Android, listOf(kotlin.sourceSets.getByName("androidMain")))
   //Specify the folders where your proto files are located, you can list multiple.
