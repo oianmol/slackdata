@@ -18,14 +18,15 @@ class MessagingService(
   }
 
   override fun getMessages(request: SKGetMessageRequest): Flow<SKMessages> {
-    return messagesDataSource.getMessages(workspaceId = request.workspaceId, channelId = request.channelId).map { query ->
-      val skMessages = query.executeAsList().map { skMessage ->
-        skMessage.toGrpc()
-      }
-      SKMessages.newBuilder()
-        .addAllMessages(skMessages)
-        .build()
-    }.catch { throwable ->
+    return messagesDataSource.getMessages(workspaceId = request.workspaceId, channelId = request.channelId)
+      .map { query ->
+        val skMessages = query.executeAsList().map { skMessage ->
+          skMessage.toGrpc()
+        }
+        SKMessages.newBuilder()
+          .addAllMessages(skMessages)
+          .build()
+      }.catch { throwable ->
       throwable.printStackTrace()
       emit(SKMessages.newBuilder().build())
     }
