@@ -35,7 +35,7 @@ class WorkspaceService(
   }
 }
 
-private fun SkWorkspace.toGRPC(): SKWorkspace {
+fun SkWorkspace.toGRPC(): SKWorkspace {
   val dbWorkspace = this
   return SKWorkspace.newBuilder()
     .setUuid(dbWorkspace.uuid)
@@ -46,9 +46,9 @@ private fun SkWorkspace.toGRPC(): SKWorkspace {
     .build()
 }
 
-private fun SKWorkspace.toDBWorkspace(): SkWorkspace {
+fun SKWorkspace.toDBWorkspace(workspaceId:String = UUID.randomUUID().toString()): SkWorkspace {
   return SkWorkspace(
-    this.uuid ?: UUID.randomUUID().toString(),
+    this.uuid ?: workspaceId,
     this.name,
     this.domain,
     this.picUrl,

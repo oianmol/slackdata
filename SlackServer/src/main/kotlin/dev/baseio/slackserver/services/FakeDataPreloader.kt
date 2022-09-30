@@ -3,8 +3,18 @@ package dev.baseio.slackserver.services
 import dev.baseio.slackdata.protos.SKChannel
 import dev.baseio.slackdata.protos.SKUser
 import dev.baseio.slackdata.protos.SKWorkspace
+import dev.baseio.slackserver.data.ChannelsDataSource
+import dev.baseio.slackserver.data.MessagesDataSource
+import dev.baseio.slackserver.data.UsersDataSource
+import dev.baseio.slackserver.data.WorkspaceDataSource
+import java.util.UUID
 
-object FakeDataPreloader {
+class FakeDataPreloader(
+  private val workspaceDataSource: WorkspaceDataSource,
+  private val channelsDataSource: ChannelsDataSource,
+  private val messagesDataSource: MessagesDataSource,
+  private val usersDataSource: UsersDataSource
+) {
 
   val workSpacesLocal = getWorkSpaces()
 
@@ -22,7 +32,7 @@ object FakeDataPreloader {
         channels.add(
           SKChannel.newBuilder()
             .setWorkspaceId(skWorkspace.uuid)
-            .setUuid("${it}_${skWorkspace.uuid}")
+            .setUuid(UUID.randomUUID().toString())
             .setName("Channel #$it")
             .setCreatedDate(System.currentTimeMillis())
             .setModifiedDate(System.currentTimeMillis())
@@ -31,7 +41,7 @@ object FakeDataPreloader {
             .setIsStarred(false)
             .setIsShareOutSide(false)
             .setIsOneToOne(false)
-            .setAvatarUrl(null)
+            .setAvatarUrl("")
             .build()
         )
       }
@@ -54,7 +64,7 @@ object FakeDataPreloader {
       repeat(50) {
         add(
           SKUser.newBuilder().setUuid(
-            skWorkspace.uuid + "fd7bcea3-5ff0-4235-8555-7e0876ead879$it"
+            UUID.randomUUID().toString()
           )
             .setWorkspaceId(skWorkspace.uuid)
             .setGender("Male")
@@ -76,7 +86,7 @@ object FakeDataPreloader {
     return mutableListOf<SKWorkspace>().apply {
       add(
         SKWorkspace.newBuilder()
-          .setUuid("1")
+          .setUuid(UUID.randomUUID().toString())
           .setName("Kotlin")
           .setDomain("kotlinlang.slack.com")
           .setPicUrl("https://avatars.slack-edge.com/2021-08-18/2394702857843_51119ca847fe3f05614b_88.png")
@@ -84,7 +94,7 @@ object FakeDataPreloader {
       )
       add(
         SKWorkspace.newBuilder()
-          .setUuid("2")
+          .setUuid(UUID.randomUUID().toString())
           .setName("mutualmobile")
           .setDomain("mutualmobile.slack.com")
           .setPicUrl("https://avatars.slack-edge.com/2018-07-20/401750958992_1b07bb3c946bc863bfc6_88.png")
@@ -92,7 +102,7 @@ object FakeDataPreloader {
       )
       add(
         SKWorkspace.newBuilder()
-          .setUuid("3")
+          .setUuid(UUID.randomUUID().toString())
           .setName("androidworldwide")
           .setDomain("androidworldwide.slack.com")
           .setPicUrl(
@@ -102,7 +112,7 @@ object FakeDataPreloader {
       )
       add(
         SKWorkspace.newBuilder()
-          .setUuid("4")
+          .setUuid(UUID.randomUUID().toString())
           .setName("gophers")
           .setDomain("gophers.slack.com")
           .setPicUrl(
@@ -110,6 +120,18 @@ object FakeDataPreloader {
           )
           .build()
       )
+    }
+  }
+
+  fun preload() {
+    workSpacesLocal.map { skWorkspace ->
+      workspaceDataSource.saveWorkspace(skWorkspace.toDBWorkspace(skWorkspace.uuid))
+    }
+    channels.map { channel ->
+      channelsDataSource.insertChannel(channel.toDBChannel(channel.workspaceId, channel.uuid))
+    }
+    users.map { user ->
+      usersDataSource.saveUser(user.toDBUser(user.uuid))
     }
   }
 }

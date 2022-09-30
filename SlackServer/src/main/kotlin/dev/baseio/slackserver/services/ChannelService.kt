@@ -31,10 +31,14 @@ class ChannelService(
   }
 }
 
-private fun SKChannel.toDBChannel(): SkChannel {
+fun SKChannel.toDBChannel(
+  workspaceId: String = UUID.randomUUID().toString(),
+  channelId: String = UUID.randomUUID().toString()
+): SkChannel {
   return SkChannel(
-    this.uuid ?: UUID.randomUUID().toString(),
-    this.workspaceId, this.name,
+    this.uuid ?: channelId,
+    this.workspaceId ?: workspaceId,
+    this.name,
     createdDate.toInt(),
     modifiedDate.toInt(),
     isMuted.oneOrZero(), isPrivate.oneOrZero(),
@@ -48,7 +52,7 @@ private fun Boolean.oneOrZero(): Int {
   return if (this) 1 else 0
 }
 
-private fun SkChannel.toGRPC(): SKChannel {
+fun SkChannel.toGRPC(): SKChannel {
   return SKChannel.newBuilder()
     .setUuid(this.uuid)
     .setAvatarUrl(this.avatarUrl)

@@ -99,4 +99,5 @@ service MessagesService{
 
 service UsersService{
   rpc getUsers(SKWorkspaceChannelRequest) returns (stream SKUsers);
+  rpc saveUser(SKUser) returns (SKUser);
 }
